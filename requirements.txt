@@ -1,0 +1,13 @@
+# --- GPU & Core (RTX 4070 Optimized) ---
+torch==2.9.1+cu128
+torchaudio==2.9.1+cu128
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+# --- Speed Boosts ---
+# flash-attn is native on 4070 and HUGE for speed flash-attn>=2.7.0
+
+
+# --- Chatterbox Core ---
+accelerate>=1.1.0
+transformers>=4.45.0
+soundfile>=0.12.1

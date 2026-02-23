@@ -1,0 +1,28 @@
+services:
+
+  gotr:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gotr
+    restart: unless-stopped
+    expose:
+      - "7371"
+    volumes:
+      - ./audio/generated:/app/audio/generated
+      - ./static/chapters:/app/static/chapters
+    environment:
+      - DEV=false
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    networks:
+      - npm_network
+
+networks:
+  npm_network:
+    external: true

@@ -1,0 +1,203 @@
+body {
+  font-family: sans-serif;
+  background: #1e1e1e;
+  color: #fff;
+  padding: 20px;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.chunk-row {
+  background: #2d2d2d;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #4a9eff;
+}
+.chunk-text {
+  font-style: italic;
+  color: #ccc;
+  margin: 10px 0;
+}
+.chunk-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+select {
+  padding: 8px;
+  margin-bottom: 20px;
+  background: #333;
+  color: white;
+  border: 1px solid #555;
+}
+button {
+  cursor: pointer;
+  padding: 5px 15px;
+  background: #4a9eff;
+  border: none;
+  color: white;
+  border-radius: 4px;
+}
+button:disabled {
+  background: #555;
+}
+audio {
+  height: 35px;
+}
+
+.content-area {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.edit-area {
+  width: 100%;
+  min-height: 80px;
+  background: #121212;
+  color: #00ffcc;
+  border: 1px solid #4a9eff;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  resize: vertical;
+}
+
+.edit-toggle-btn.saving {
+  background: #28a745; /* Green for Save */
+}
+
+.chunk-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.top-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #252526;
+  padding: 15px;
+  border-radius: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #333;
+}
+
+.batch-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.batch-btn {
+  background: #007acc;
+  font-weight: bold;
+}
+
+#statusIndicator {
+  text-align: center;
+  color: #4a9eff;
+  margin-bottom: 10px;
+  font-weight: bold;
+  height: 20px;
+}
+
+.active-playing {
+  border-left: 6px solid #ffcc00 !important;
+  background: #3e3e3e !important;
+  transition: all 0.3s ease;
+}
+
+/* Scrollbar styling for smooth scrolling experience */
+html {
+  scroll-behavior: smooth;
+}
+
+#progressWrapper {
+  margin: 20px 0;
+  padding: 10px;
+  background: #252526;
+  border-radius: 8px;
+}
+
+#progressBarContainer {
+  width: 100%;
+  height: 12px;
+  background: #333;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #444;
+}
+
+#progressBarFill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #4a9eff, #00ffcc);
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+  transition: width 0.3s ease-out;
+}
+
+#progressLabel {
+  text-align: right;
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-top: 5px;
+}
+
+.regen-btn-inner {
+  background: #e67e22;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  margin-left: 10px;
+  border-radius: 3px;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.regen-btn-inner:hover {
+  background: #d35400;
+}
+
+.stale-audio audio {
+  border: 2px solid #e67e22;
+  filter: grayscale(0.5);
+}
+
+.trim-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #444;
+}
+
+.trim-input {
+    width: 80px;
+    background: #1e1e1e;
+    border: 1px solid #555;
+    color: #00ffcc;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.trim-btn-action {
+    background: #c0392b;
+    color: white;
+    border: none;
+    padding: 3px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.trim-btn-action:hover {
+    background: #e74c3c;
+}

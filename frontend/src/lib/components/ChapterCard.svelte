@@ -1,0 +1,29 @@
+<script>
+	/** @type {{ chapter: import('../types.js').ChapterEntry, active: boolean, focused: boolean, onclick: () => void }} */
+	let { chapter, active = false, focused = false, onclick } = $props();
+</script>
+
+<div class="card-stagger mx-2.5 my-2" onclick={onclick}>
+	{#key focused}
+	<div
+		class="rounded-lg cursor-pointer border overflow-hidden {focused && !active ? 'card-focus-flash card-focused-border' : ''}"
+		class:border-l-4={active}
+		style="
+			background: {active ? 'rgba(162,155,254,0.05)' : focused ? 'var(--bg-card-hover)' : 'var(--bg-card)'};
+			{!focused && !active ? 'border-color: var(--border-color); transition: border-color 0.2s, background 0.2s;' : active ? 'border-color: var(--accent-purple); transition: border-color 0.2s, background 0.2s;' : ''}
+		"
+	>
+		<div class="p-4 hover:translate-x-1 transition-transform duration-200">
+			<div class="text-[0.7rem] uppercase tracking-[0.08em] mb-1" style="color: var(--text-secondary);">
+				{chapter.data.summary?.chapter ? `Chapter ${chapter.data.summary.chapter}` : (chapter.data.title ?? chapter.id)}
+			</div>
+			<div class="text-[1.05rem] font-semibold my-2" style="color: var(--text-primary);">
+				{chapter.data.summary?.gospel_title ?? chapter.data.title ?? chapter.id}
+			</div>
+			<div class="text-[0.8rem] leading-snug line-clamp-2" style="color: var(--text-secondary);">
+				{chapter.data.summary?.subtitle ?? ''}
+			</div>
+		</div>
+	</div>
+	{/key}
+</div>

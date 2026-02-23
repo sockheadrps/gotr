@@ -1,0 +1,127 @@
+{
+  "chapter": 8,
+  "topic_title": "Technology & AI",
+  "gospel_title": "The Builder and the Machine",
+  "position": "Self-taught tinkerer who builds things for fun, not just profit.",
+  "evidence": [
+    {
+      "message_id": "1465924878904590336",
+      "before": [
+        {
+          "author": "You",
+          "content": "like even conceptually so"
+        },
+        {
+          "author": "You",
+          "content": "i cant proof read the code effectively"
+        },
+        {
+          "author": "You",
+          "content": "thats why my projects end up with so much stale code and have a million lines of code and shits done not super optimally"
+        }
+      ],
+      "quote": "I used to not be able to do much fast but also did every single line of code myself, sometimes someone elses code cuz they were helping me but at least I typed it",
+      "after": [
+        {
+          "author": "Satan",
+          "content": "whenever I use it I do always at least fully understand the goal of what it's doing and why it's doing things a certain way, it does help to just like..."
+        },
+        {
+          "author": "You",
+          "content": "now I have things that are a lot more sophisticated and are better than anything I could do on my own, and Im better than I was then, but im not typin..."
+        }
+      ]
+    },
+    {
+      "message_id": "1360903078630658048",
+      "before": [
+        {
+          "author": "You",
+          "content": "I want a baritone, theyre fucking expensive"
+        },
+        {
+          "author": "You",
+          "content": "that sounds badass though"
+        },
+        {
+          "author": "You",
+          "content": "I was thinking btw"
+        }
+      ],
+      "quote": "instead of using GPT, we hsould just train our own AI",
+      "after": [
+        {
+          "author": "You",
+          "content": "then itd be at least like, even if it is a meme, a real AI project ol"
+        },
+        {
+          "author": "Satan",
+          "content": "yeah that'd be sick af"
+        }
+      ]
+    },
+    {
+      "message_id": "1268687734646505544",
+      "before": [
+        {
+          "author": "You",
+          "content": "But none of the PRs were bullshit PRs though frankly, all the things I did were already open issues, and the first PR I did was literally because thei..."
+        },
+        {
+          "author": "You",
+          "content": "it just happened to already have an open issue"
+        },
+        {
+          "author": "You",
+          "content": "The last PR was good practice thoughh actually even though it was relatively simple. Having to build the docs and update change logs and shit, never d..."
+        }
+      ],
+      "quote": "I kinda wanna see if I can get in doing a little bit of work on twitchio3 sounds extension, since it'd be from the ground up. I think they havnt even given it a thought yet",
+      "after": [
+        {
+          "author": "Satan",
+          "content": "yeah I doubt it"
+        },
+        {
+          "author": "Satan",
+          "content": "fuckin \"tbh I couldn't care less about sounds\""
+        }
+      ]
+    },
+    {
+      "message_id": "1405740048237727874",
+      "before": [
+        {
+          "author": "You",
+          "content": "but when you know youre wrong, and I know youre wrong"
+        },
+        {
+          "author": "You",
+          "content": "yet you tell me youre right"
+        },
+        {
+          "author": "You",
+          "content": "bothers THE FUCK out of me lol"
+        }
+      ],
+      "quote": "I\u2019ve been wrong like 500x times more than the average person. Especially when it comes to programming. I didn\u2019t die or anything it\u2019s fine I just was like \u201coh I\u2019m wrong look at that thank you for showing me the correct thing. Cuz now I can actually do a thing and not, not do a thing while saying I can\u201d",
+      "after": [
+        {
+          "author": "Satan",
+          "content": "> The master has failed more times than the novice has even tried."
+        },
+        {
+          "author": "You",
+          "content": "I used to tell this retarded annoying ass kid I worked with, the one I had his linesman\u2019s welded closed when he wasn\u2019t looking lmao, \u201cI\u2019ve forgot more..."
+        }
+      ]
+    }
+  ],
+  "the_case": "Let me make the case for self-taught tinkerer who builds things for fun, not just profit.. You're passionate about programming and hardware. You've built multiple projects including Discord bots, audio libraries, automation tools, and you're actively experimenting with AI/ML. You learn by doing and share your work.",
+  "source_message_ids": [
+    "1465924878904590336",
+    "1360903078630658048",
+    "1268687734646505544",
+    "1405740048237727874"
+  ]
+}

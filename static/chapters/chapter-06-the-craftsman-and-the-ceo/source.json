@@ -1,0 +1,98 @@
+{
+  "chapter": 6,
+  "topic_title": "Work & Career",
+  "gospel_title": "The Craftsman and the CEO",
+  "position": "Blue-collar skilled worker who values practical abilities over formal credentials.",
+  "evidence": [
+    {
+      "message_id": "1291336390373670912",
+      "before": [
+        {
+          "author": "Satan",
+          "content": "since when tf do you work so late"
+        },
+        {
+          "author": "You",
+          "content": "PRobably the Rust and Arduino subreddit both"
+        },
+        {
+          "author": "Satan",
+          "content": "I have a program that resets everyday"
+        }
+      ],
+      "quote": "Well, Im on a team of non-electrician electricians. And we have like 450ft total of 2 1/2\" conduit from 6 individual panels to 4 different PDU's, and its all through customer occupied space. And Im the only one who's worked on it at all out of 4 other people, none of which work my shift. But to be honest Im literally the only 1 out of all of them who has ever even run conduit before probably lol.",
+      "after": [
+        {
+          "author": "You",
+          "content": "Manager wants it powered up monday morning"
+        },
+        {
+          "author": "You",
+          "content": "So I worked like 12 1/2 hours today or so and will probably do the same tomorrow, and then hope to god they pull the wire during the day, and Ill go i..."
+        }
+      ]
+    },
+    {
+      "message_id": "1274627636169281701",
+      "before": [
+        {
+          "author": "Satan",
+          "content": "lmfaooo"
+        },
+        {
+          "author": "Satan",
+          "content": "dumbass HR"
+        },
+        {
+          "author": "You",
+          "content": "also dont ever trust fucking hr people"
+        }
+      ],
+      "quote": "they are there to protect the business, they dont give 4 fucks about you as an employee no matter what they say",
+      "after": [
+        {
+          "author": "You",
+          "content": "i went to the bar and came home and started to try to do more shit with the audio shit"
+        },
+        {
+          "author": "You",
+          "content": "and realized i was too drunk"
+        }
+      ]
+    },
+    {
+      "message_id": "1290539262382702623",
+      "before": [
+        {
+          "author": "You",
+          "content": "but had no idea about software architecture"
+        },
+        {
+          "author": "You",
+          "content": "and like, didnt know how to make a program with like, state control or anything"
+        },
+        {
+          "author": "You",
+          "content": "Couldnt comprehend how to use loops to like, have some kind of main screen state, and then sub menus and shit"
+        }
+      ],
+      "quote": "Honest to god I dont know how I got anything to work looking back on it now cuz I had no fucking clue what I was doing and I recognize that now lol",
+      "after": [
+        {
+          "author": "You",
+          "content": "and chatgpt wasnt even close to being around"
+        },
+        {
+          "author": "Satan",
+          "content": "lol that reminded me that whn I was making my shitty twitch bot like 8 years ago or however long ago"
+        }
+      ]
+    }
+  ],
+  "the_case": "Let me make the case for blue-collar skilled worker who values practical abilities over formal credentials.. You're an electrician by trade who takes pride in your work. You're skeptical of managers and corporate culture. You believe in your skills and are willing to call out when others are incompetent. You work hard but also play hard.",
+  "source_message_ids": [
+    "1291336390373670912",
+    "1274627636169281701",
+    "1290539262382702623"
+  ]
+}

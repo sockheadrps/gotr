@@ -1,0 +1,27 @@
+{
+  "chapter": 8,
+  "iteration": 0,
+  "original_topic": "Technology & AI",
+  "gospel_title": "The Builder and the Machine",
+  "ideology_summary": "Self-taught tinkerer who builds things for fun, not just profit. Passionate about programming and hardware. Has built multiple projects including Discord bots, audio libraries, automation tools. Actively experimenting with AI/ML. Learns by doing and shares work.",
+  "blurb": {
+    "hook": "A builder who makes things vs. a user who just consumes — and a new machine that can think (or can it?)",
+    "conflict": "The user fears AI will take over. The builder sees a tool. The real question: what does it mean to build?",
+    "stakes": "The builder reveals: the machine is a tool, not a mind. The building is the point."
+  },
+  "summary_chunks": [
+    "The Builder and the Machine is an allegorical tale about a builder who makes things vs. a user who just consumes.",
+    "The user asks: why build when everything is already built? The builder asks back: can you fix it when it breaks?",
+    "The builder learned by breaking things, failing, crashing code. I don't know how I got anything to work - I just kept typing.",
+    "Now there's a machine that can think. The builder is curious, not afraid. It's a tool, not a mind. A hammer.",
+    "The hardest truth: you've been wrong a lot. I've been wrong 500x times more than the average person. That's the badge - proof you're in the arena."
+  ],
+  "lesson": [
+    "You learn by building. Not by reading. Not by watching. By doing. By failing. By doing again.",
+    "I used to not be able to do much fast but also did every single line of code myself.",
+    "The machine is a tool. Not a mind. Not a threat. A hammer that becomes whatever you build with it.",
+    "The building - the act of making something that did not exist - that is the point.",
+    "I've been wrong like 500x times more than the average person. That's not shame. That's the badge."
+  ],
+  "subtitle": "In which the traveler discovers that the one who builds knows things that the one who merely uses can never understand."
+}

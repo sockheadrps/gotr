@@ -1,0 +1,66 @@
+{
+  "iteration": 0,
+  "title": "The 10 Commandments of the Real",
+  "commandments": [
+    {
+      "number": 1,
+      "title": "Question the Shepherds",
+      "text": "The temple does not seek truth — it seeks obedience. If there is a god, that's between you and god. Follow the questions, not the ones who claim to have the answers.",
+      "source_chapter": "The Shepherd's Lie"
+    },
+    {
+      "number": 2,
+      "title": "Trust No Wolves",
+      "text": "Two wolves fighting over who gets to eat you is not a choice — it's a trick. They're partners, not enemies. Build something else.",
+      "source_chapter": "The Two Wolves"
+    },
+    {
+      "number": 3,
+      "title": "See the Strings",
+      "text": "The strings are there. The question is whether you want to look. The only freedom is in seeing the machine for what it is.",
+      "source_chapter": "The Puppet and the Puppeteer"
+    },
+    {
+      "number": 4,
+      "title": "Write Your Own Story",
+      "text": "The meaning of life is not found — it is made. Every choice is a page appearing where there was blankness. The meaning is the making.",
+      "source_chapter": "The Story That Wasn't Written"
+    },
+    {
+      "number": 5,
+      "title": "Cause No Harm",
+      "text": "Morality is not a set of rules — it's a question: does this cause harm? And loyalty is the only virtue that matters.",
+      "source_chapter": "The Preacher and the Thief"
+    },
+    {
+      "number": 6,
+      "title": "Build with Your Hands",
+      "text": "The hands know things the head never learns. Watch what they do, not what they say. The thing you build will outlast them.",
+      "source_chapter": "The Craftsman and the CEO"
+    },
+    {
+      "number": 7,
+      "title": "Choose Few, Choose Real",
+      "text": "A hundred acquaintances won't hold you when you fall. Four will. Save your realness for those who deserve it.",
+      "source_chapter": "The Circle of Fire"
+    },
+    {
+      "number": 8,
+      "title": "Fail Forward",
+      "text": "You learn by building, not by reading. The machine is a tool — a hammer that becomes whatever you build with it. The building is the point.",
+      "source_chapter": "The Builder and the Machine"
+    },
+    {
+      "number": 9,
+      "title": "Choose Your Own Doors",
+      "text": "The second door is there — behind it is something real. A drink with friends is just being human. Don't let the fearful tell you what's behind the doors.",
+      "source_chapter": "The Two Doors"
+    },
+    {
+      "number": 10,
+      "title": "Seek the Awake Ones",
+      "text": "Most people are sheep. You can't save the flock — you don't need to. You just need a few. Real ones. Awake ones.",
+      "source_chapter": "The Flock and the Sheepdogs"
+    }
+  ]
+}

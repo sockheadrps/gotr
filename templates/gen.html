@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Voice Gen Studio</title>
+    <link rel="stylesheet" href="/static/gen.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Voice Gen Studio</h1>
+        <nav>
+        <a href="/review-mode" style="color: #8e44ad; font-weight: bold; text-decoration: none;">📖 Switch to Review Mode</a>
+    </nav>
+        <div class="top-controls">
+          <select id="chapterSelect">
+            <option value="">Select a Chapter</option>
+          </select>
+          <div class="batch-actions">
+            <button id="addEndBtn" style="background: #27ae60">
+              + Add Chunk
+            </button>
+            <button
+              id="fixSyncBtn"
+              style="background: #d35400"
+              title="Fixes file order"
+            >
+              Fix Sync
+            </button>
+            <button id="generateAllBtn" class="batch-btn">Generate All</button>
+            <button id="regenAllBtn" class="batch-btn" style="background: #e74c3c">Regenerate All (Force)</button>
+            <button id="playAllBtn" class="batch-btn">Play All</button>
+            <button id="stopBtn" class="batch-btn" disabled>Stop</button>
+
+            <button id="genSummaryBtn" style="background: #16a085">
+              🎙 Gen Summary
+            </button>
+            <button id="genAllSummariesBtn" style="background: #1a5276">
+              🎙 All Summaries
+            </button>
+            <button id="concatBtn" style="background: #8e44ad">
+              Concatenate Full
+            </button>
+            <button
+              id="downloadFullBtn"
+              style="background: #2980b9; display: none"
+            >
+              ⬇️ Download Full
+            </button>
+          </div>
+        </div>
+
+        <div id="progressWrapper" style="display: none">
+          <div id="progressBarContainer">
+            <div id="progressBarFill"></div>
+          </div>
+          <p id="progressLabel">0% Complete</p>
+        </div>
+
+        <div id="statusIndicator"></div>
+      </header>
+
+      <div id="chapterInfo">
+        <h2 id="chapterTitle"></h2>
+        <div id="summaryPanel" style="display:none; margin-bottom: 20px; padding: 16px; background: #1a2a1a; border: 1px solid #27ae60; border-radius: 8px;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+            <strong style="color:#2ecc71;">Chapter Summary</strong>
+            <div id="summaryAudioResult"></div>
+          </div>
+          <p id="summaryText" style="color:#ccc; margin:0; font-style:italic; line-height:1.5;"></p>
+        </div>
+        <div id="chunksContainer"></div>
+      </div>
+    </div>
+
+    <script src="/static/gen.js"></script>
+  </body>
+</html>

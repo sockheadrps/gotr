@@ -1,0 +1,121 @@
+# Chapter 6: The Craftsman and the CEO
+
+*In which the traveler discovers that the hands know things the head never learns.*
+
+---
+
+There was a craftsman named Torin, and he built things.
+
+He built with his hands. He built with wood and metal, fire and force. He built chairs that held weight and bridges that held people and houses that held families. When Torin built something, it stood. It worked. It did what it was meant to do.
+
+In the same city, there was a man named Vance who also "built" things.
+
+Vance built PowerPoint presentations. Vance built emails. Vance built meetings. Vance built organizational charts and strategic initiatives and quarterly reports. When Vance built something, there was applause and handshakes and a corner office with a view. But what exactly he had built - no one could say.
+
+One day, the city needed a new bridge. The council hired Vance to manage the project.
+
+Vance called meetings. Vance created committees. Vance wrote reports about reports about reports. Six months passed. The bridge was still not built.
+
+The people complained. "We need a bridge! We hired you to build!"
+
+Vance smiled. "Building a bridge is complex. It requires coordination. Alignment. Synergy. We need to circle back and regroup."
+
+Torin, passing by, stopped.
+
+"How much rope do you need?" he asked.
+
+"What?" said Vance.
+
+"Rope. To measure. To see how far it is across the river. Then wood. Then time. Then a bridge."
+
+"We have a project manager," said Vance.
+
+"Let me guess," said Torin. "You've never actually built anything."
+
+Vance's smile faded.
+
+"I have an MBA," said Vance.
+
+Torin laughed - not cruelly, but honestly.
+
+"I have twelve years running conduit," said Torin. "I have calluses. I have scars. I have a body that knows things my brain never learned. And I can build your bridge in three months."
+
+---
+
+The council hired Torin. In three months, the bridge was built. It stood. It worked.
+
+But the celebration was strange. Vance took credit. "Our strategic vision," Vance said. "Our leadership." Torin stood in the back, covered in sawdust, and said nothing.
+
+Afterward, Torin's apprentice asked: "Why didn't you correct him? You built the bridge. He just made slides about it."
+
+Torin smiled.
+
+"Let him have his slides," said Torin. "I have a bridge. I know what I built. I know what my hands did. That's enough."
+
+---
+
+But Torin had a harder lesson for his apprentice, and this was it:
+
+The world will not value what you build. The world will value what is loud. The CEO will make ten thousand times more than the craftsman. The manager will get credit for the worker's hands. The one who watches will be paid more than the one who does.
+
+"This is wrong," the apprentice said.
+
+"Yes," said Torin. "But it is also true. So you have a choice: be angry about it, or build anyway."
+
+"Why build anyway?"
+
+"Because the building is the point," said Torin. "Not the credit. Not the money. The building. The thing that stands. The thing that works. The thing that did not exist before you made it exist."
+
+Torin held up his hands.
+
+"These hands," he said, "have made things that will outlast me. Outlast the CEO. Outlast his company. Outlast everything. The bridge will still stand when we're all dead. What has Vance built that will still be here?"
+
+---
+
+But there was another lesson - and this was the hardest one.
+
+"You will meet men who call themselves electricians," Torin told his apprentice, "who have never run conduit. Men who call themselves leaders, who have never led. Men who call themselves experts, who have never done the thing they claim to know."
+
+"How do they get away with it?" asked the apprentice.
+
+"They talk," said Torin. "They talk and talk and talk, and they sound like they know things. They use words they learned from books. They speak with confidence. And most people - most people cannot tell the difference between a person who knows and a person who just sounds like they know."
+
+"How do I tell the difference?"
+
+Torin pointed to his hands.
+
+"Watch what they do, not what they say. Watch if they can do the thing they're talking about. Watch if they have the calluses. Watch if they can look you in the eye and say: I don't know, but I'll figure it out."
+
+"And if they can't?"
+
+"Then they're Vance," said Torin. "And you let them manage. You let them plan. But you - you keep your hands on the work. Because when the bridge falls, they'll blame you. And when it stands, they'll take credit. That's just how it is."
+
+---
+
+The apprentice thought on this.
+
+"So the point," he said, "is not to become the CEO. The point is to become the one who can actually do the thing."
+
+"Yes," said Torin. "And to be at peace with the fact that no one will know your name. The bridge will stand. That's enough. The building is the point."
+
+---
+
+*And so it was, and so it is, and so it shall be until the last craftsman puts down the last tool and the last slide is forgotten.*
+
+---
+
+**Torin's Truth:**
+
+The hands know things the head never learns.
+
+You will not be paid what you're worth. You will not get credit for what you build. The loud ones will always win - they have always won.
+
+But the thing you build will outlast them. The bridge stands. The code runs. The thing works.
+
+That's enough.
+
+The building is the point.
+
+---
+
+*Thus concludes the sixth teaching.*
