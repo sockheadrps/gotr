@@ -15,8 +15,8 @@ services:
       - DEV=false
       - GENERATION_ENABLED=false
     networks:
-      - npm_network
+      - nginx-proxy-network
 
 networks:
-  npm_network:
+  nginx-proxy-network:
     external: true
