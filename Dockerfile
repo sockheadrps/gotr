@@ -7,36 +7,29 @@ RUN npm ci
 COPY frontend/ ./
 RUN npm run build
 
-# ── Stage 2: Production image ────────────────────────────────────────────────
-FROM nvidia/cuda:12.8.0-runtime-ubuntu24.04
+# ── Stage 2: Production image (API server only, no GPU/TTS) ──────────────────
+FROM python:3.12-slim
 
-# System deps
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3 python3-pip python3-venv git ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# Python deps (torch cu128 needs extra index)
+# Only the lightweight API deps
 COPY requirements.txt ./
-RUN python3 -m venv /venv && \
-    /venv/bin/pip install --upgrade pip && \
-    /venv/bin/pip install -r requirements.txt
-
-ENV PATH="/venv/bin:$PATH"
+RUN pip install --no-cache-dir -r requirements.txt
 
 # App source
 COPY worker.py ./
-COPY app/ ./app/
 COPY static/ ./static/
-COPY audio/reference/ ./audio/reference/
-COPY templates/ ./templates/
 
 # Frontend build output
 COPY --from=frontend-build /build/build ./frontend/build
 
-# Audio generated dir (bind-mounted in prod, pre-create for safety)
+# Audio generated dir (bind-mounted in prod)
 RUN mkdir -p ./audio/generated
+
+ENV GENERATION_ENABLED=false
 
 EXPOSE 7371
 

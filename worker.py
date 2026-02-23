@@ -2,10 +2,8 @@ import io
 import os
 import uuid
 import json
-import torch
 import textwrap
 import uvicorn
-import torchaudio
 import threading
 import subprocess
 from pathlib import Path
@@ -14,11 +12,17 @@ from fastapi import FastAPI, Response, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
-from chatterbox.tts_turbo import ChatterboxTurboTTS
 from dotenv import load_dotenv
 
 load_dotenv()
 DEV = os.getenv("DEV", "").strip().upper() == "TRUE"
+# Set GENERATION_ENABLED=false in production to skip GPU/TTS imports
+GENERATION_ENABLED = os.getenv("GENERATION_ENABLED", "true").strip().lower() != "false"
+
+if GENERATION_ENABLED:
+    import torch
+    import torchaudio
+    from chatterbox.tts_turbo import ChatterboxTurboTTS
 
 # --- 1. Configuration & Paths ---
 BASE_DIR = Path(__file__).parent
@@ -39,8 +43,10 @@ _loaded_model = None
 
 def get_model():
     """Triggered ONLY when audio generation is requested. Prevents multiple loads."""
+    if not GENERATION_ENABLED:
+        raise RuntimeError("Audio generation is disabled in this environment (GENERATION_ENABLED=false).")
     global _loaded_model
-    
+
     # Only one request can enter this block; others wait until it finishes
     with _model_lock:
         if _loaded_model is None:

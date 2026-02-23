@@ -13,6 +13,7 @@ services:
       - ./static/chapters:/app/static/chapters
     environment:
       - DEV=false
+      - GENERATION_ENABLED=false
     deploy:
       resources:
         reservations:

@@ -1,0 +1,18 @@
+# Full TTS generation stack — only needed on the GPU worker machine
+# Install base deps first: pip install -r requirements.txt
+# Then: pip install -r requirements-gpu.txt
+-r requirements.txt
+
+# PyTorch (RTX 4070 / CUDA 12.8)
+torch==2.9.1+cu128
+torchaudio==2.9.1+cu128
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+# Chatterbox TTS
+chatterbox-tts>=0.1.0
+accelerate>=1.1.0
+transformers>=4.45.0
+soundfile>=0.12.1
+
+# Audio processing
+pydub>=0.25.1
