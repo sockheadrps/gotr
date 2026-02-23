@@ -7,10 +7,11 @@ __pycache__/
 *.egg-info/
 dist/
 
-# Env / secrets
+# Env / secrets — ignore all .env files, keep only .example templates
 .env
 .env.*
 !.env.example
+!.env.*.example
 
 # Claude Code local config
 .claude/
@@ -18,11 +19,24 @@ dist/
 # Generated audio — wav files are legacy, mp3s are kept
 audio/generated/**/*.wav
 
+# Old pre-SvelteKit UI (superseded by frontend/)
+templates/
+static/dashboard_script.js
+static/dashboard_style.css
+static/gen.css
+static/gen.js
+static/review_script.js
+static/review_style.css
+
+# One-off / dev scripts not needed in production
+fix_audio_names.py
+test_stream.py
+worker.manifest.json
+
+# Old standalone TTS server (superseded by worker.py)
+app/
+
 # Frontend
 frontend/node_modules/
 frontend/build/
 frontend/.svelte-kit/
-
-# OS
-.DS_Store
-Thumbs.db
