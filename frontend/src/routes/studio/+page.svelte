@@ -383,7 +383,7 @@
 	<!-- Summary panel -->
 	{#if summaryText}
 		<div class="px-6 pt-3">
-			<SummaryPanel summary={summaryText} audioUrl={summaryAudioUrl} open={summaryOpen} onToggle={() => summaryOpen = !summaryOpen} />
+			<SummaryPanel summary={summaryText} audioUrl={summaryAudioUrl} open={summaryOpen} onToggle={() => summaryOpen = !summaryOpen} chapterId={selectedId} iteration={selectedIteration} onRefresh={refreshIteration} />
 		</div>
 	{/if}
 

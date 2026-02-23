@@ -1,15 +1,39 @@
 <script>
+	import { updateIterationSummary } from '$lib/api.js';
+
 	/**
 	 * @type {{
 	 *   summary: string,
 	 *   audioUrl: string|null,
 	 *   open: boolean,
 	 *   onToggle: () => void,
+	 *   chapterId?: string,
+	 *   iteration?: number|null,
+	 *   onRefresh?: () => void,
 	 * }}
 	 */
-	let { summary, audioUrl, open, onToggle } = $props();
+	let { summary, audioUrl, open, onToggle, chapterId = '', iteration = null, onRefresh } = $props();
 
 	const cacheBustedSrc = $derived(audioUrl ? `${audioUrl}?t=${Date.now()}` : null);
+
+	let isEditing = $state(false);
+	let editText = $state(summary);
+	let saving = $state(false);
+
+	$effect(() => {
+		if (!isEditing) editText = summary;
+	});
+
+	async function saveEdit() {
+		if (!chapterId || iteration === null) return;
+		saving = true;
+		const res = await updateIterationSummary(chapterId, iteration, editText);
+		saving = false;
+		if (res.success) {
+			isEditing = false;
+			if (onRefresh) onRefresh();
+		}
+	}
 </script>
 
 <div class="rounded-lg border overflow-hidden" style="background: var(--bg-card); border-color: var(--border-color);">
@@ -37,7 +61,26 @@
 			{#if cacheBustedSrc}
 				<audio controls preload="none" src={cacheBustedSrc} class="w-full h-8 mt-3 mb-3"></audio>
 			{/if}
-			<p class="text-[0.85rem] leading-relaxed m-0" style="color: var(--text-secondary);">{summary}</p>
+
+			{#if isEditing}
+				<textarea
+					class="w-full rounded border px-3 py-2 text-[0.85rem] leading-relaxed resize-y outline-none mt-3"
+					style="background: var(--bg-main); border-color: var(--border-color); color: var(--text-primary); min-height: 100px;"
+					rows="5"
+					bind:value={editText}
+				></textarea>
+				<div class="flex gap-2 mt-2">
+					<button onclick={saveEdit} disabled={saving} class="chunk-btn" style="color: #2ecc71; border-color: rgba(46,204,113,0.4);">{saving ? '⏳' : 'Save'}</button>
+					<button onclick={() => isEditing = false} class="chunk-btn" style="color: var(--text-secondary); border-color: var(--border-color);">Cancel</button>
+				</div>
+			{:else}
+				<div class="flex items-start gap-3 mt-3">
+					<p class="text-[0.85rem] leading-relaxed m-0 flex-1" style="color: var(--text-secondary);">{summary}</p>
+					{#if chapterId && iteration !== null}
+						<button onclick={() => isEditing = true} class="chunk-btn shrink-0" style="color: var(--text-secondary); border-color: var(--border-color);">Edit</button>
+					{/if}
+				</div>
+			{/if}
 		</div>
 	{/if}
 </div>

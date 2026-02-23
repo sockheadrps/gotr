@@ -138,6 +138,15 @@ export async function updateIterationChunk(chapter_id, iteration, chunk_type, in
 	return res.json();
 }
 
+export async function updateIterationSummary(chapter_id, iteration, summary) {
+	const res = await fetch(`/chapters/${chapter_id}/iterations/${iteration}/summary`, {
+		method: 'PUT',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ summary }),
+	});
+	return res.json();
+}
+
 export async function fixIterationAlignment(chapter_id, iteration) {
 	const res = await fetch(`/chapters/${chapter_id}/iterations/${iteration}/fix-alignment`, { method: 'POST' });
 	return res.json();

@@ -557,6 +557,21 @@ def set_active_iteration(chapter_id: str, request: SetActiveRequest):
     set_chapter_meta(chapter_id, meta)
     return {"success": True}
 
+class SummaryUpdateRequest(BaseModel):
+    summary: str
+
+@app.put("/chapters/{chapter_id}/iterations/{iteration}/summary")
+def update_iteration_summary(chapter_id: str, iteration: int, request: SummaryUpdateRequest):
+    ipaths = get_iteration_paths(chapter_id, iteration)
+    if not ipaths["summary"].exists():
+        raise HTTPException(status_code=404, detail="summary.json not found.")
+    with open(ipaths["summary"], "r", encoding="utf-8") as f:
+        data = json.load(f)
+    data["summary"] = request.summary
+    with open(ipaths["summary"], "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+    return {"success": True}
+
 @app.post("/chapters/{chapter_id}/iterations/{iteration}/generate-summary")
 def generate_iteration_summary(chapter_id: str, iteration: int):
     ipaths = get_iteration_paths(chapter_id, iteration)
