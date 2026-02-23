@@ -14,13 +14,6 @@ services:
     environment:
       - DEV=false
       - GENERATION_ENABLED=false
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
     networks:
       - npm_network
 
