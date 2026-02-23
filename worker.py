@@ -171,7 +171,7 @@ def set_chapter_meta(chapter_id: str, meta: dict):
     p = CHAPTERS_ROOT / chapter_id / "chapter.json"
     p.write_text(json.dumps(meta, indent=2), encoding="utf-8")
 
-def save_mp3(tensor: torch.Tensor, sr: int, out_path: Path, bitrate: str = "192k"):
+def save_mp3(tensor, sr: int, out_path: Path, bitrate: str = "192k"):
     """Save a waveform tensor as MP3 via ffmpeg (WAV pipe → MP3)."""
     buf = io.BytesIO()
     torchaudio.save(buf, tensor, sr, format="wav", bits_per_sample=16)
@@ -369,7 +369,7 @@ def stream_audio(text: str):
     torchaudio.save(buffer, wav_cpu, get_model().sr, format="wav", bits_per_sample=16)
     return Response(content=buffer.getvalue(), media_type="audio/wav")
 
-def save_audio(tensor: torch.Tensor, sr: int, path: Path):
+def save_audio(tensor, sr: int, path: Path):
     """Save to the format implied by path extension (.mp3 or .wav)."""
     if path.suffix == ".mp3":
         save_mp3(tensor, sr, path)
