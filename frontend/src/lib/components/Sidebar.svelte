@@ -44,7 +44,7 @@
 	});
 </script>
 
-<nav bind:this={navEl} class="w-87.5 shrink-0 flex flex-col overflow-y-auto" style="background: var(--bg-sidebar); border-right: 1px solid var(--border-color);">
+<nav bind:this={navEl} class="w-87.5 shrink-0 flex flex-col overflow-y-auto h-full" style="background: var(--bg-sidebar); border-right: 1px solid var(--border-color);">
 	<header bind:this={headerEl} class="sidebar-header sticky top-0 z-10" style="background: var(--bg-sidebar);">
 
 		<!-- Title -->

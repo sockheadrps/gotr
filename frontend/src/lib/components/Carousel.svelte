@@ -23,16 +23,34 @@
 		animKey++;
 		onSlideChange?.(next);
 	}
+
+	/** @type {number|null} */
+	let touchStartX = null;
+
+	/** @param {TouchEvent} e */
+	function handleTouchStart(e) {
+		touchStartX = e.touches[0].clientX;
+	}
+
+	/** @param {TouchEvent} e */
+	function handleTouchEnd(e) {
+		if (touchStartX === null) return;
+		const dx = e.changedTouches[0].clientX - touchStartX;
+		touchStartX = null;
+		if (Math.abs(dx) < 40) return;
+		if (dx < 0) go(currentIndex + 1);
+		else go(currentIndex - 1);
+	}
 </script>
 
-<div class="w-full h-full flex flex-col px-8 py-4">
+<div class="w-full h-full flex flex-col px-2 py-2 md:px-8 md:py-4 overflow-hidden md:overflow-visible">
 	<!-- Slide + arrows -->
-	<div class="relative flex-1 w-full max-w-325 mx-auto group/carousel">
+	<div class="relative flex-1 w-full max-w-325 mx-auto group/carousel min-h-0">
 		<!-- Prev arrow -->
 		<button
 			onclick={() => go(currentIndex - 1)}
-			class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20
-				w-11 h-11 rounded-full flex items-center justify-center
+			class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20
+				w-11 h-11 rounded-full items-center justify-center
 				border cursor-pointer transition-all duration-200
 				opacity-0 group-hover/carousel:opacity-100 hover:scale-110"
 			style="background: rgba(15,17,26,0.85); border-color: rgba(255,255,255,0.15); color: var(--text-primary); backdrop-filter: blur(8px);"
@@ -45,7 +63,7 @@
 		</button>
 
 		<!-- Slides -->
-		<div class="flex w-full h-full">
+		<div class="flex w-full h-full" ontouchstart={handleTouchStart} ontouchend={handleTouchEnd}>
 			{#each allChapters as chapter, i}
 				{#if i === currentIndex}
 					{#key animKey}
@@ -58,8 +76,8 @@
 		<!-- Next arrow -->
 		<button
 			onclick={() => go(currentIndex + 1)}
-			class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20
-				w-11 h-11 rounded-full flex items-center justify-center
+			class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20
+				w-11 h-11 rounded-full items-center justify-center
 				border cursor-pointer transition-all duration-200
 				opacity-0 group-hover/carousel:opacity-100 hover:scale-110"
 			style="background: rgba(15,17,26,0.85); border-color: rgba(255,255,255,0.15); color: var(--text-primary); backdrop-filter: blur(8px);"
@@ -73,7 +91,7 @@
 	</div>
 
 	<!-- Pill dots -->
-	<div class="flex items-center justify-center gap-1.5 mt-6">
+	<div class="flex shrink-0 items-center justify-center gap-1.5 mt-2 mb-1 md:mt-6 md:mb-0">
 		{#each allChapters as _, i}
 			<button
 				onclick={() => go(i)}

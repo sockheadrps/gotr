@@ -129,7 +129,7 @@
   <div
     style="opacity: {carouselVisible
       ? 1
-      : 0}; transition: opacity 0.4s ease; height: 100%;"
+      : 0}; transition: opacity 0.4s ease; height: 100%; overflow: hidden; display: flex; flex-direction: column;"
   >
     {#if layout.allChapters.length > 0}
       <Carousel
@@ -151,15 +151,12 @@
   </div>
 {:else if showCommandments && currentChapter}
   <div
-    class="grid h-full"
-    style="
-    grid-template-columns: 300px 1fr;
-    background: var(--bg-main);
-  "
+    class="cmd-layout h-full overflow-hidden"
+    style="background: var(--bg-main);"
   >
     <!-- LEFT COLUMN -->
     <div
-      class="flex flex-col h-full overflow-y-auto"
+      class="cmd-left flex flex-col overflow-y-auto"
       style="border-right: 1px solid rgba(255,255,255,0.06);"
     >
       <div
@@ -204,7 +201,7 @@
     </div>
 
     <!-- RIGHT COLUMN -->
-    <div class="h-full overflow-y-auto relative" style="padding: 0 6rem 0 5rem;">
+    <div class="cmd-right h-full overflow-y-auto relative">
       {#key focusedCmd}
         {#if commandmentItems[focusedCmd]}
           <div style="max-width: 660px; padding-top: 16vh; padding-bottom: 14rem;">
@@ -242,6 +239,41 @@
 {/if}
 
 <style>
+  /* ── Commandments two-column layout ── */
+  .cmd-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+  }
+
+  .cmd-left {
+    height: 100%;
+  }
+
+  .cmd-right {
+    padding: 0 6rem 0 5rem;
+  }
+
+  @media (max-width: 767px) {
+    .cmd-layout {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+      overflow-y: auto;
+    }
+
+    .cmd-left {
+      height: auto;
+      overflow-y: visible;
+      border-right: none !important;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .cmd-right {
+      padding: 2rem 1.5rem 10rem;
+      height: auto;
+      overflow-y: visible;
+    }
+  }
+
   /* ── Left column list items ── */
   .cmd-list-item {
     position: relative;

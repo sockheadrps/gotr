@@ -27,7 +27,7 @@
 
 </script>
 
-<div class="px-15 py-15 pb-36">
+<div class="px-15 py-15 pb-36 h-full overflow-y-auto">
 	<header class="mb-10 pb-6" style="border-bottom: 1px solid var(--border-color);">
 		<div class="mb-3 flex gap-2.5 flex-wrap">
 			<span class="inline-block px-3 py-1 rounded-full text-[0.65rem] font-extrabold uppercase tracking-[1.2px]"

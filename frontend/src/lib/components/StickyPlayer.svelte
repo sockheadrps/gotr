@@ -46,9 +46,8 @@
 
 {#if player.visible}
 	<footer
-		class="fixed bottom-6 right-6 z-3000 rounded-2xl px-6 py-3 border"
+		class="fixed bottom-4 right-4 left-4 z-3000 rounded-2xl px-4 py-3 border md:bottom-6 md:right-6 md:left-93.5 md:px-6"
 		style="
-			left: calc(350px + 24px);
 			background: rgba(22,27,34,0.8);
 			backdrop-filter: blur(12px) saturate(180%);
 			-webkit-backdrop-filter: blur(12px) saturate(180%);
@@ -56,7 +55,7 @@
 			box-shadow: 0 8px 32px rgba(0,0,0,0.5);
 		"
 	>
-		<div class="flex items-center justify-between gap-8">
+		<div class="flex items-center justify-between gap-4 md:gap-8">
 			<!-- Info -->
 			<div class="flex-1 min-w-50">
 				<span class="block font-bold text-[0.95rem] truncate text-white">{player.title}</span>
