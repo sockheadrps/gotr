@@ -204,7 +204,7 @@
     <div class="cmd-right h-full overflow-y-auto relative">
       {#key focusedCmd}
         {#if commandmentItems[focusedCmd]}
-          <div style="max-width: 660px; padding-top: 16vh; padding-bottom: 14rem;">
+          <div class="cmd-right-inner" style="max-width: 660px; padding-top: 16vh; padding-bottom: 14rem;">
 
             <!-- Number: pure opacity fade, no movement — arrives first -->
             <div class="cmd-num">
@@ -316,7 +316,7 @@
   }
 
   .cmd-list-num {
-    font-size: 0.45rem;
+    font-size: 0.5rem;
     font-weight: 900;
     letter-spacing: 0.14em;
     font-variant-numeric: tabular-nums;
@@ -331,8 +331,8 @@
   }
 
   .cmd-list-title {
-    font-size: 0.83rem;
-    font-weight: 500;
+    font-size: 0.92rem;
+    font-weight: 600;
     line-height: 1.3;
     transition: color 0.2s, font-weight 0.1s;
     color: rgba(255, 255, 255, 0.38);
@@ -375,8 +375,8 @@
   /* ── Title: rises from deeper below with shadow depth ── */
   .cmd-title-main {
     font-family: Georgia, 'Palatino Linotype', Palatino, serif;
-    font-size: clamp(2.85rem, 4.6vw, 4.05rem);
-    font-weight: 700;
+    font-size: clamp(3.05rem, 4.9vw, 4.4rem);
+    font-weight: 800;
     line-height: 1.06;
     letter-spacing: -0.022em;
     color: white;
@@ -404,7 +404,7 @@
   /* ── Body: surfaces with blur, arrives after rule ── */
   .cmd-body-text {
     font-family: Georgia, serif;
-    font-size: clamp(1.15rem, 1.6vw, 1.3rem);
+    font-size: clamp(1.22rem, 1.8vw, 1.45rem);
     line-height: 2;
     color: rgba(255, 255, 255, 0.72);
     opacity: 0;
@@ -459,5 +459,18 @@
       transform: translateY(0);
       filter: blur(0);
     }
+  }
+
+  .cmd-right-inner {
+    animation: cmdPanelIn 0.5s ease;
+  }
+
+  @keyframes cmdPanelIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cmd-right-inner { animation: none; }
   }
 </style>
