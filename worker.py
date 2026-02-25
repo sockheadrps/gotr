@@ -177,7 +177,8 @@ def save_mp3(tensor, sr: int, out_path: Path, bitrate: str = "192k"):
     torchaudio.save(buf, tensor, sr, format="wav", bits_per_sample=16)
     buf.seek(0)
     subprocess.run(
-        ["ffmpeg", "-y", "-f", "wav", "-i", "pipe:0", "-b:a", bitrate, str(out_path)],
+        ["ffmpeg", "-y", "-f", "wav", "-i", "pipe:0",
+         "-af", "apad=pad_dur=0.7", "-b:a", bitrate, str(out_path)],
         input=buf.read(), check=True, capture_output=True,
     )
 

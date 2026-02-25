@@ -254,7 +254,7 @@
 	<title>Voice Gen Studio</title>
 </svelte:head>
 
-<div class="min-h-screen flex flex-col" style="background: var(--bg-main); color: var(--text-primary);">
+<div class="min-h-full flex flex-col overflow-y-auto" style="background: var(--bg-main); color: var(--text-primary);">
 
 	<!-- Sticky toolbar -->
 	<header class="sticky top-0 z-20 px-6 py-3 flex flex-wrap items-center gap-3 border-b" style="background: var(--bg-sidebar); border-color: var(--border-color);">
