@@ -91,11 +91,18 @@
 			onclick={() => (unlocked = true)}
 		>
 			<button
-				class="px-6 py-2.5 rounded-full font-semibold cursor-pointer border transition-all duration-300 hover:text-(--bg-main)"
+				class="reveal-btn px-6 py-2.5 rounded-full font-semibold cursor-pointer border transition-all duration-300"
 				style="background: rgba(162,155,254,0.1); border-color: var(--accent-purple); color: var(--accent-purple); backdrop-filter: blur(5px);"
-				onmouseenter={(e) => { e.currentTarget.style.background = 'var(--accent-purple)'; }}
-				onmouseleave={(e) => { e.currentTarget.style.background = 'rgba(162,155,254,0.1)'; }}
+				onmouseenter={(e) => { e.currentTarget.style.background = 'var(--accent-purple)'; e.currentTarget.style.color = 'var(--bg-main)'; }}
+				onmouseleave={(e) => { e.currentTarget.style.background = 'rgba(162,155,254,0.1)'; e.currentTarget.style.color = 'var(--accent-purple)'; }}
 			>Reveal Full Manuscript</button>
 		</div>
 	{/if}
 </section>
+
+<style>
+	.reveal-btn:focus-visible {
+		outline: 2px solid rgba(162, 155, 254, 0.6);
+		outline-offset: 3px;
+	}
+</style>

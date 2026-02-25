@@ -37,7 +37,7 @@
 	<div class="flex items-center gap-2.5 w-full">
 		<button
 			onclick={toggle}
-			class="w-8 h-8 rounded-full shrink-0 flex items-center justify-center border-none cursor-pointer transition-transform duration-150 hover:scale-110"
+			class="audio-toggle w-8 h-8 rounded-full shrink-0 flex items-center justify-center border-none cursor-pointer transition-transform duration-150 hover:scale-110"
 			style="background: var(--accent-teal); color: var(--bg-main);"
 		>
 			{#if isPlaying}
@@ -50,9 +50,21 @@
 				</svg>
 			{/if}
 		</button>
-		<div onclick={seek} class="flex-1 h-1 rounded-full cursor-pointer relative" style="background: rgba(255,255,255,0.15);">
+		<div onclick={seek} class="progress-track flex-1 h-1 rounded-full cursor-pointer relative" style="background: rgba(255,255,255,0.15);">
 			<div class="h-full rounded-full transition-[width] duration-100" style="width: {progress}%; background: var(--accent-teal);"></div>
 		</div>
 		<span class="text-[0.78rem] shrink-0 tabular-nums" style="color: var(--text-secondary);">{timeDisplay}</span>
 	</div>
 </div>
+
+<style>
+	.audio-toggle:focus-visible {
+		outline: 2px solid rgba(0, 210, 211, 0.55);
+		outline-offset: 2px;
+	}
+
+	.progress-track:focus-visible {
+		outline: 2px solid rgba(255, 255, 255, 0.4);
+		outline-offset: 3px;
+	}
+</style>

@@ -13,6 +13,12 @@
 				style="width: {percent}%; background: linear-gradient(90deg, var(--accent-purple), var(--accent-teal));"
 			></div>
 		</div>
-		<span class="text-[0.7rem] font-bold tabular-nums shrink-0" style="color: var(--text-secondary);">{completed}/{total} — {percent}%</span>
+		<span class="progress-label text-[0.7rem] font-bold tabular-nums shrink-0" style="color: var(--text-secondary);">{completed}/{total} — {percent}%</span>
 	</div>
 </div>
+
+<style>
+	.progress-label {
+		letter-spacing: 0.02em;
+	}
+</style>

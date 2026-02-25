@@ -48,7 +48,7 @@
 	<header bind:this={headerEl} class="sidebar-header sticky top-0 z-10" style="background: var(--bg-sidebar);">
 
 		<!-- Title -->
-		<h1 class="sidebar-title m-0 leading-none cursor-pointer select-none" onclick={onTitleClick}>
+		<h1 class="sidebar-title m-0 leading-none cursor-pointer select-none" onclick={onTitleClick} role="button" tabindex="0">
 			<span class="sidebar-eyebrow">The</span>
 			<span class="sidebar-wordmark">
 				Got<em class="sidebar-r">R</em>
@@ -105,6 +105,12 @@
     flex-direction: column;
     gap: 0.1rem;
     padding-bottom: 0.7rem;
+  }
+
+  .sidebar-title:focus-visible {
+    outline: 2px solid rgba(0, 210, 211, 0.5);
+    outline-offset: 4px;
+    border-radius: 6px;
   }
 
   .sidebar-eyebrow {
@@ -176,6 +182,12 @@
 
   .sidebar-cmd-btn:hover .sidebar-cmd-label {
     color: var(--accent-teal);
+  }
+
+  .sidebar-cmd-btn:focus-visible {
+    outline: 2px solid rgba(0, 210, 211, 0.45);
+    outline-offset: 3px;
+    border-radius: 6px;
   }
 
   .sidebar-cmd-arrow {

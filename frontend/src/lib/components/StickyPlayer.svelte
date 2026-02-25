@@ -66,7 +66,7 @@
 			<div class="flex-3 flex flex-col items-center">
 				<button
 					onclick={togglePlay}
-					class="w-10 h-10 rounded-full flex items-center justify-center border-none cursor-pointer mb-2 transition-transform duration-200 hover:scale-110"
+					class="player-toggle w-10 h-10 rounded-full flex items-center justify-center border-none cursor-pointer mb-2 transition-transform duration-200 hover:scale-110"
 					style="background: var(--accent-teal);"
 				>
 					{#if player.isPlaying}
@@ -99,7 +99,7 @@
 					<a
 						href="/files/{player.fullAudioFilename}"
 						download
-						class="flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-200 hover:-translate-y-0.5 no-underline"
+						class="player-action flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-200 hover:-translate-y-0.5 no-underline"
 						style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: var(--text-secondary);"
 						onmouseenter={(e) => { e.currentTarget.style.color = 'var(--accent-teal)'; e.currentTarget.style.borderColor = 'var(--accent-teal)'; }}
 						onmouseleave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; }}
@@ -114,3 +114,15 @@
 		</div>
 	</footer>
 {/if}
+
+<style>
+	.player-toggle:focus-visible {
+		outline: 2px solid rgba(0, 210, 211, 0.6);
+		outline-offset: 3px;
+	}
+
+	.player-action:focus-visible {
+		outline: 2px solid rgba(255, 255, 255, 0.4);
+		outline-offset: 3px;
+	}
+</style>

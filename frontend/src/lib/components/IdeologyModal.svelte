@@ -17,7 +17,7 @@
 			<h3 class="m-0 text-lg font-bold" style="color: var(--accent-purple);">The Ryan Ideology</h3>
 			<button
 				onclick={onClose}
-				class="bg-transparent border-none text-2xl cursor-pointer leading-none"
+				class="modal-close bg-transparent border-none text-2xl cursor-pointer leading-none"
 				style="color: var(--text-secondary);"
 			>×</button>
 		</div>
@@ -26,3 +26,10 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.modal-close:focus-visible {
+		outline: 2px solid rgba(162, 155, 254, 0.6);
+		outline-offset: 3px;
+	}
+</style>

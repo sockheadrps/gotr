@@ -250,7 +250,7 @@
   }
 
   .cmd-right {
-    padding: 0 6rem 0 5rem;
+    padding: 0 5.5rem 0 4.5rem;
   }
 
   @media (max-width: 767px) {
@@ -280,14 +280,21 @@
     display: flex;
     align-items: baseline;
     gap: 0.7rem;
-    padding: 0.8rem 1.75rem;
+    padding: 0.85rem 1.75rem;
     text-align: left;
     width: 100%;
     background: transparent;
     border: none;
     cursor: pointer;
     opacity: 0;
+    transition: background 0.2s ease, color 0.2s ease;
     animation: cmdListIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .cmd-list-item:focus-visible {
+    outline: 2px solid rgba(162, 155, 254, 0.5);
+    outline-offset: -2px;
+    background: rgba(162, 155, 254, 0.08);
   }
 
   .cmd-list-item::after {
@@ -337,7 +344,15 @@
   }
 
   .cmd-list-item:not(.cmd-list-item--active):hover .cmd-list-title {
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .cmd-list-item:not(.cmd-list-item--active):hover {
+    background: linear-gradient(
+      to right,
+      rgba(162, 155, 254, 0.08),
+      rgba(0, 0, 0, 0)
+    );
   }
 
   @keyframes cmdListIn {
@@ -360,12 +375,12 @@
   /* ── Title: rises from deeper below with shadow depth ── */
   .cmd-title-main {
     font-family: Georgia, 'Palatino Linotype', Palatino, serif;
-    font-size: clamp(2.8rem, 4.5vw, 4rem);
-    font-weight: bold;
-    line-height: 1.05;
-    letter-spacing: -0.025em;
+    font-size: clamp(2.85rem, 4.6vw, 4.05rem);
+    font-weight: 700;
+    line-height: 1.06;
+    letter-spacing: -0.022em;
     color: white;
-    margin: 0 0 3.5rem 0;
+    margin: 0 0 3.1rem 0;
     opacity: 0;
     text-shadow:
       0 8px 60px rgba(0, 0, 0, 0.9),

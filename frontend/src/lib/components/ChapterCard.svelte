@@ -3,10 +3,10 @@
 	let { chapter, active = false, focused = false, onclick } = $props();
 </script>
 
-<div class="card-stagger mx-2.5 my-2" onclick={onclick}>
+<div class="card-stagger mx-2.5 my-2" onclick={onclick} role="button" tabindex="0">
 	{#key focused}
 	<div
-		class="rounded-lg cursor-pointer border overflow-hidden {focused && !active ? 'card-focus-flash card-focused-border' : ''}"
+		class="chapter-card rounded-lg cursor-pointer border overflow-hidden {focused && !active ? 'card-focus-flash card-focused-border' : ''}"
 		class:border-l-4={active}
 		style="
 			background: {active ? 'rgba(162,155,254,0.05)' : focused ? 'var(--bg-card-hover)' : 'var(--bg-card)'};
@@ -27,3 +27,18 @@
 	</div>
 	{/key}
 </div>
+
+<style>
+	.card-stagger:focus-visible .chapter-card {
+		outline: 2px solid rgba(162, 155, 254, 0.6);
+		outline-offset: 2px;
+	}
+
+	.chapter-card {
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.chapter-card:hover {
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+	}
+</style>

@@ -34,17 +34,18 @@
 				style="background: rgba(0,210,211,0.12); border: 1px solid rgba(0,210,211,0.4); color: var(--accent-teal);">
 				{s.original_topic}
 			</span>
-			<span
-				class="inline-block px-3 py-1 rounded-full text-[0.65rem] font-extrabold uppercase tracking-[1px] cursor-pointer transition-all duration-200 hover:-translate-y-px"
+			<button
+				type="button"
+				class="ideology-chip inline-block px-3 py-1 rounded-full text-[0.65rem] font-extrabold uppercase tracking-[1px] cursor-pointer transition-all duration-200 hover:-translate-y-px"
 				style="background: rgba(162,155,254,0.1); border: 1px solid rgba(162,155,254,0.3); color: var(--accent-purple);"
 				onmouseenter={(e) => { e.currentTarget.style.background = 'var(--accent-purple)'; e.currentTarget.style.color = 'var(--bg-main)'; }}
 				onmouseleave={(e) => { e.currentTarget.style.background = 'rgba(162,155,254,0.1)'; e.currentTarget.style.color = 'var(--accent-purple)'; }}
 				onclick={() => (ideologyOpen = true)}
-			>Ryan's Ideology 🔍</span>
+			>Ryan's Ideology 🔍</button>
 		</div>
 
-		<h1 class="text-[3.2rem] font-bold m-0 mb-2.5 leading-tight text-white">{s.gospel_title}</h1>
-		<p class="font-serif text-[1.1rem] italic m-0 leading-snug" style="color: var(--text-secondary);">{s.subtitle}</p>
+		<h1 class="chapter-title text-[3.2rem] font-bold m-0 mb-2.5 leading-tight text-white">{s.gospel_title}</h1>
+		<p class="chapter-subtitle font-serif text-[1.1rem] italic m-0 leading-snug" style="color: var(--text-secondary);">{s.subtitle}</p>
 
 	</header>
 
@@ -54,3 +55,18 @@
 		<IdeologyModal text={s.ideology_summary} onClose={() => (ideologyOpen = false)} />
 	{/if}
 </div>
+
+<style>
+	.chapter-title {
+		letter-spacing: -0.02em;
+	}
+
+	.chapter-subtitle {
+		line-height: 1.6;
+	}
+
+	.ideology-chip:focus-visible {
+		outline: 2px solid rgba(162, 155, 254, 0.6);
+		outline-offset: 2px;
+	}
+</style>

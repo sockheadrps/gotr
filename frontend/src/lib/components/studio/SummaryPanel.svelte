@@ -40,7 +40,7 @@
 	<!-- Collapsible header -->
 	<button
 		onclick={onToggle}
-		class="w-full flex items-center justify-between px-4 py-3 cursor-pointer border-none text-left transition-colors duration-150"
+		class="summary-toggle w-full flex items-center justify-between px-4 py-3 cursor-pointer border-none text-left transition-colors duration-150"
 		style="background: transparent;"
 		onmouseenter={(e) => { e.currentTarget.style.background = 'var(--bg-card-hover)'; }}
 		onmouseleave={(e) => { e.currentTarget.style.background = 'transparent'; }}
@@ -84,3 +84,10 @@
 		</div>
 	{/if}
 </div>
+
+<style>
+	.summary-toggle:focus-visible {
+		outline: 2px solid rgba(0, 210, 211, 0.5);
+		outline-offset: -2px;
+	}
+</style>

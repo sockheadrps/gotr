@@ -83,7 +83,7 @@
 	></div>
 {/if}
 
-<div class="flex h-screen overflow-hidden" style="background: var(--bg-main); color: var(--text-primary);">
+<div class="flex h-screen overflow-hidden app-shell" style="background: var(--bg-main); color: var(--text-primary);">
 
 	<!-- Sidebar: hidden off-screen on mobile, shown as drawer when open -->
 	<div class="
@@ -127,3 +127,21 @@
 </div>
 
 <StickyPlayer />
+
+<style>
+	.app-shell {
+		letter-spacing: 0.01em;
+	}
+
+	@media (max-width: 767px) {
+		/* Softer mobile header polish */
+		.sticky.top-0 {
+			backdrop-filter: blur(8px);
+		}
+	}
+
+	button[aria-label="Toggle menu"]:focus-visible {
+		outline: 2px solid rgba(0, 255, 209, 0.45);
+		outline-offset: 2px;
+	}
+</style>

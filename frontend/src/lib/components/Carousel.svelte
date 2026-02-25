@@ -49,7 +49,7 @@
 		<!-- Prev arrow -->
 		<button
 			onclick={() => go(currentIndex - 1)}
-			class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20
+			class="carousel-btn hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20
 				w-11 h-11 rounded-full items-center justify-center
 				border cursor-pointer transition-all duration-200
 				opacity-0 group-hover/carousel:opacity-100 hover:scale-110"
@@ -76,7 +76,7 @@
 		<!-- Next arrow -->
 		<button
 			onclick={() => go(currentIndex + 1)}
-			class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20
+			class="carousel-btn hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20
 				w-11 h-11 rounded-full items-center justify-center
 				border cursor-pointer transition-all duration-200
 				opacity-0 group-hover/carousel:opacity-100 hover:scale-110"
@@ -95,7 +95,7 @@
 		{#each allChapters as _, i}
 			<button
 				onclick={() => go(i)}
-				class="h-1.5 rounded-full border-none cursor-pointer transition-all duration-300"
+				class="carousel-dot h-1.5 rounded-full border-none cursor-pointer transition-all duration-300"
 				style="
 					width: {i === currentIndex ? '28px' : '8px'};
 					background: {i === currentIndex ? 'var(--accent-teal)' : 'rgba(255,255,255,0.2)'};
@@ -105,3 +105,15 @@
 		{/each}
 	</div>
 </div>
+
+<style>
+	.carousel-btn:focus-visible {
+		outline: 2px solid rgba(0, 210, 211, 0.6);
+		outline-offset: 2px;
+	}
+
+	.carousel-dot:focus-visible {
+		outline: 2px solid rgba(255, 255, 255, 0.4);
+		outline-offset: 3px;
+	}
+</style>

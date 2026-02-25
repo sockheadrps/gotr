@@ -233,4 +233,13 @@
 	}
 	:global(.chunk-btn:hover:not(:disabled)) { filter: brightness(1.25); }
 	:global(.chunk-btn:disabled) { opacity: 0.4; cursor: not-allowed; }
+	:global(.chunk-btn:focus-visible) {
+		outline: 2px solid rgba(255, 255, 255, 0.35);
+		outline-offset: 2px;
+	}
+	:global(textarea:focus-visible),
+	:global(input:focus-visible) {
+		outline: 2px solid rgba(0, 210, 211, 0.35);
+		outline-offset: 2px;
+	}
 </style>

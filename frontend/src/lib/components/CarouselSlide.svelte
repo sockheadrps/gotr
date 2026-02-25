@@ -43,7 +43,7 @@
 				<!-- Accent line -->
 				<div class="w-10 h-0.5 mb-5 rounded-full" style="background: var(--accent-teal);"></div>
 
-				<p class="text-[0.88rem] leading-relaxed overflow-y-auto m-0 scrollbar-thin" style="color: var(--text-secondary);">
+				<p class="slide-summary text-[0.88rem] leading-relaxed overflow-y-auto m-0 scrollbar-thin" style="color: var(--text-secondary);">
 					{summaryText}
 				</p>
 			</div>
@@ -55,7 +55,7 @@
 				{/if}
 				<button
 					onclick={onRead}
-					class="w-full py-3 rounded-xl font-bold text-[0.9rem] cursor-pointer border-none transition-all duration-200 tracking-wide hover:brightness-110 hover:-translate-y-px"
+					class="slide-read-btn w-full py-3 rounded-xl font-bold text-[0.9rem] cursor-pointer border-none transition-all duration-200 tracking-wide hover:brightness-110 hover:-translate-y-px"
 					style="background: var(--accent-teal); color: var(--bg-main); box-shadow: 0 4px 20px rgba(0,210,211,0.25);"
 				>Read Chapter →</button>
 			</div>
@@ -79,10 +79,19 @@
 		font-size: 2rem;
 	}
 
+	.slide-summary {
+		line-height: 1.7;
+	}
+
 	.slide-info {
 		width: 24rem;
 		flex-shrink: 0;
 		justify-content: space-between;
+	}
+
+	.slide-read-btn:focus-visible {
+		outline: 2px solid rgba(0, 210, 211, 0.6);
+		outline-offset: 2px;
 	}
 
 	/* Mobile: image fills card, info panel overlays from bottom */

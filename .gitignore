@@ -40,3 +40,6 @@ app/
 frontend/node_modules/
 frontend/build/
 frontend/.svelte-kit/
+
+# Ignore accidental venv typo
+.vnev
