@@ -125,8 +125,8 @@
 
   .sidebar-wordmark {
     font-family: Georgia, 'Palatino Linotype', Palatino, serif;
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 2.2rem;
+    font-weight: 800;
     letter-spacing: -0.03em;
     color: white;
     line-height: 1;
@@ -168,11 +168,11 @@
   }
 
   .sidebar-cmd-label {
-    font-size: 0.55rem;
-    font-weight: 600;
+    font-size: 0.6rem;
+    font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.28);
+    color: rgba(255, 255, 255, 0.38);
     transition: color 0.2s;
   }
 

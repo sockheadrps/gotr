@@ -102,7 +102,7 @@
 		/>
 	</div>
 
-	<main class="flex-1 min-w-0 flex flex-col overflow-hidden">
+	<main class="app-main flex-1 min-w-0 flex flex-col overflow-hidden">
 		<!-- Mobile header bar -->
 		<div class="sticky top-0 z-30 flex items-center gap-3 px-4 py-3 md:hidden border-b" style="background: var(--bg-sidebar); border-color: var(--border-color);">
 			<button
@@ -130,7 +130,20 @@
 
 <style>
 	.app-shell {
-		letter-spacing: 0.01em;
+		letter-spacing: 0.02em;
+	}
+
+	.app-main {
+		animation: mainFade 0.35s ease;
+	}
+
+	@keyframes mainFade {
+		from { opacity: 0; transform: translateY(6px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.app-main { animation: none; }
 	}
 
 	@media (max-width: 767px) {

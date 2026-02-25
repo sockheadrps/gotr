@@ -32,13 +32,13 @@
 	}
 </script>
 
-<div class="flex flex-col gap-1.5 rounded-xl p-2 px-3" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);">
-	<span class="text-[0.7rem] font-semibold uppercase tracking-[0.08em]" style="color: var(--accent-teal);">Summary</span>
+<div class="flex flex-col gap-1.5 rounded-md px-0 py-1" style="background: transparent; border: 0;">
+	<span class="text-[0.6rem] font-semibold uppercase tracking-[0.22em]" style="color: var(--text-secondary);">Summary</span>
 	<div class="flex items-center gap-2.5 w-full">
 		<button
 			onclick={toggle}
-			class="audio-toggle w-8 h-8 rounded-full shrink-0 flex items-center justify-center border-none cursor-pointer transition-transform duration-150 hover:scale-110"
-			style="background: var(--accent-teal); color: var(--bg-main);"
+			class="audio-toggle w-8 h-8 rounded-full shrink-0 flex items-center justify-center border cursor-pointer transition-all duration-150"
+			style="background: transparent; color: var(--accent-teal); border-color: rgba(0,210,211,0.5);"
 		>
 			{#if isPlaying}
 				<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
@@ -50,8 +50,8 @@
 				</svg>
 			{/if}
 		</button>
-		<div onclick={seek} class="progress-track flex-1 h-1 rounded-full cursor-pointer relative" style="background: rgba(255,255,255,0.15);">
-			<div class="h-full rounded-full transition-[width] duration-100" style="width: {progress}%; background: var(--accent-teal);"></div>
+		<div onclick={seek} class="progress-track flex-1 h-0.5 rounded-full cursor-pointer relative" style="background: rgba(255,255,255,0.15);">
+			<div class="h-full rounded-full transition-[width] duration-100" style="width: {progress}%; background: rgba(0,210,211,0.7);"></div>
 		</div>
 		<span class="text-[0.78rem] shrink-0 tabular-nums" style="color: var(--text-secondary);">{timeDisplay}</span>
 	</div>

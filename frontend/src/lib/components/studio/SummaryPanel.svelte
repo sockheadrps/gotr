@@ -75,7 +75,7 @@
 				</div>
 			{:else}
 				<div class="flex items-start gap-3 mt-3">
-					<p class="text-[0.85rem] leading-relaxed m-0 flex-1" style="color: var(--text-secondary);">{summary}</p>
+					<p class="text-[0.9rem] leading-relaxed m-0 flex-1" style="color: var(--text-secondary);">{summary}</p>
 					{#if chapterId && iteration !== null}
 						<button onclick={() => isEditing = true} class="chunk-btn shrink-0" style="color: var(--text-secondary); border-color: var(--border-color);">Edit</button>
 					{/if}

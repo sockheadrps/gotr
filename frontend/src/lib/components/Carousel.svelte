@@ -16,12 +16,22 @@
 	/** @type {'left'|'right'} */
 	let slideDir = $state('right');
 	let animKey = $state(0);
+	/** @type {number|null} */
+	let leavingIndex = $state(null);
+	/** @type {'left'|'right'} */
+	let leavingDir = $state('right');
 
 	function go(n) {
 		const next = ((n % total) + total) % total;
-		slideDir = next > currentIndex || (currentIndex === total - 1 && next === 0) ? 'right' : 'left';
+		const dir = next > currentIndex || (currentIndex === total - 1 && next === 0) ? 'right' : 'left';
+		slideDir = dir;
+		leavingIndex = currentIndex;
+		leavingDir = dir;
 		animKey++;
 		onSlideChange?.(next);
+		setTimeout(() => {
+			leavingIndex = null;
+		}, 520);
 	}
 
 	/** @type {number|null} */
@@ -50,7 +60,7 @@
 		<button
 			onclick={() => go(currentIndex - 1)}
 			class="carousel-btn hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20
-				w-11 h-11 rounded-full items-center justify-center
+				w-12 h-12 rounded-full items-center justify-center
 				border cursor-pointer transition-all duration-200
 				opacity-0 group-hover/carousel:opacity-100 hover:scale-110"
 			style="background: rgba(15,17,26,0.85); border-color: rgba(255,255,255,0.15); color: var(--text-primary); backdrop-filter: blur(8px);"
@@ -63,11 +73,18 @@
 		</button>
 
 		<!-- Slides -->
-		<div class="flex w-full h-full" ontouchstart={handleTouchStart} ontouchend={handleTouchEnd}>
+		<div class="slide-stage flex w-full h-full relative" ontouchstart={handleTouchStart} ontouchend={handleTouchEnd}>
+			{#if leavingIndex !== null && leavingIndex !== currentIndex}
+				<div class="slide-item">
+					<CarouselSlide chapter={allChapters[leavingIndex]} slideDir={leavingDir} phase="leave" onRead={() => onReadChapter(leavingIndex)} />
+				</div>
+			{/if}
 			{#each allChapters as chapter, i}
 				{#if i === currentIndex}
 					{#key animKey}
-						<CarouselSlide {chapter} slideDir={slideDir} onRead={() => onReadChapter(i)} />
+						<div class="slide-item">
+							<CarouselSlide {chapter} slideDir={slideDir} phase="enter" onRead={() => onReadChapter(i)} />
+						</div>
 					{/key}
 				{/if}
 			{/each}
@@ -77,7 +94,7 @@
 		<button
 			onclick={() => go(currentIndex + 1)}
 			class="carousel-btn hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20
-				w-11 h-11 rounded-full items-center justify-center
+				w-12 h-12 rounded-full items-center justify-center
 				border cursor-pointer transition-all duration-200
 				opacity-0 group-hover/carousel:opacity-100 hover:scale-110"
 			style="background: rgba(15,17,26,0.85); border-color: rgba(255,255,255,0.15); color: var(--text-primary); backdrop-filter: blur(8px);"
@@ -97,8 +114,8 @@
 				onclick={() => go(i)}
 				class="carousel-dot h-1.5 rounded-full border-none cursor-pointer transition-all duration-300"
 				style="
-					width: {i === currentIndex ? '28px' : '8px'};
-					background: {i === currentIndex ? 'var(--accent-teal)' : 'rgba(255,255,255,0.2)'};
+					width: {i === currentIndex ? '34px' : '10px'};
+					background: {i === currentIndex ? 'var(--accent-teal)' : 'rgba(255,255,255,0.3)'};
 					box-shadow: {i === currentIndex ? '0 0 8px rgba(0,210,211,0.6)' : 'none'};
 				"
 			></button>
@@ -107,6 +124,15 @@
 </div>
 
 <style>
+	.slide-stage {
+		overflow: hidden;
+	}
+
+	.slide-item {
+		position: absolute;
+		inset: 0;
+	}
+
 	.carousel-btn:focus-visible {
 		outline: 2px solid rgba(0, 210, 211, 0.6);
 		outline-offset: 2px;

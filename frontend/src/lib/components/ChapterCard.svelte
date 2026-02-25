@@ -17,10 +17,10 @@
 			<div class="text-[0.7rem] uppercase tracking-[0.08em] mb-1" style="color: var(--text-secondary);">
 				{chapter.data.summary?.chapter ? `Chapter ${chapter.data.summary.chapter}` : (chapter.data.title ?? chapter.id)}
 			</div>
-			<div class="text-[1.05rem] font-semibold my-2" style="color: var(--text-primary);">
+			<div class="text-[1.15rem] font-bold my-2" style="color: var(--text-primary);">
 				{chapter.data.summary?.gospel_title ?? chapter.data.title ?? chapter.id}
 			</div>
-			<div class="text-[0.8rem] leading-snug line-clamp-2" style="color: var(--text-secondary);">
+			<div class="text-[0.88rem] leading-snug line-clamp-2" style="color: var(--text-secondary);">
 				{chapter.data.summary?.subtitle ?? ''}
 			</div>
 		</div>
@@ -29,6 +29,19 @@
 </div>
 
 <style>
+	.card-stagger {
+		animation: cardFadeIn 0.35s ease;
+	}
+
+	@keyframes cardFadeIn {
+		from { opacity: 0; transform: translateY(6px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.card-stagger { animation: none; }
+	}
+
 	.card-stagger:focus-visible .chapter-card {
 		outline: 2px solid rgba(162, 155, 254, 0.6);
 		outline-offset: 2px;

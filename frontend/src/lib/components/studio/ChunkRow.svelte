@@ -142,7 +142,7 @@
 					bind:value={editText}
 				></textarea>
 			{:else}
-				<p class="text-[0.95rem] leading-relaxed m-0" style="color: var(--text-primary);">{chunk}</p>
+				<p class="text-[1rem] leading-relaxed m-0" style="color: var(--text-primary);">{chunk}</p>
 			{/if}
 		</div>
 	</div>
@@ -219,8 +219,8 @@
 
 <style>
 	:global(.chunk-btn) {
-		font-size: 0.68rem;
-		font-weight: 700;
+		font-size: 0.72rem;
+		font-weight: 800;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 		padding: 0.25rem 0.6rem;
