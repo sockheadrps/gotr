@@ -1,41 +1,41 @@
 # Chapter 9: The Room and the Rust
 
-*In which the traveler learns some doors are medicine and some are a cage.*
+*In which the traveler learns that comfort can be a cage and truth can cut.*
 
 ---
 
-[clear throat] I found two doors at the edge of a city.
+[clear throat] I found two doors at the edge of a city where the river splits.
 
-One door was painted white and had a bell that chimed like a hymn. The other was rusted shut, but people still tried to pry it open with their teeth.
+One door was white and rang like a hymn when the wind brushed it. The other was rusted, not from age, but from hands that kept touching it and never opening it. People lined up for the white one, smiling like it was a photograph. People argued at the rusted one, certain they had the right key.
 
-The white door led to a room of mirrors. I stepped inside and saw the faces I carried. I saw the things I believed. I saw the fears I kept feeding. It wasn’t magic. It was me. Most of the time, that’s what the room gives you.
+I stepped through the white door first. Inside was a room of mirrors. The mirrors were polite. They showed me the face I wanted to be, the face I practiced, the face that made my life easy. It wasn’t a lie. It just wasn’t the whole truth.
 
-But once, the room went deeper. I tasted something religion‑adjacent, some thing humans can’t comprehend. That’s what DMT felt like — not a church, not a doctrine, just a vastness that doesn’t care about your words. The bell didn’t answer. The room just opened.
+The room was warm. It was safe. It told me I was right, and right feels like a bed you don’t want to leave. I could have lived there — fed on my own reflection until it became a religion.
 
-The rusted door led to a tunnel that never ended. It was cold and loud. It was full of people who had been beautiful once and now looked like a decrepit shell of human. They didn’t come out. The door ate them.
+Then the rusted door groaned.
 
-Meth is crazy. I can’t think of a worse existence than being addicted to meth and homeless. I would rather be enslaved in a work labor camp for the same period of time than be that hopelessly addicted. That’s not a moral sermon. That’s a survival map.
+The rusted door opened into a corridor of light and shadow. It smelled like iron and cold air. It wasn’t pretty. It didn’t care if I felt good. It showed me the choices I’d avoided and the promises I’d half‑kept. It showed me the rooms I’d never entered because I was afraid of being wrong.
 
-So I told the traveler: don’t confuse doors. Some open a room. Some open a cage. You get to choose what you walk through, but you don’t get to choose what the door does to you once you’re inside.
+I walked and saw all the small cages we build: a job you hate but won’t quit, a friendship you shrink to fit, a story you repeat because it keeps the peace. The corridor didn’t judge me; it just held up a receipt.
 
-The city argues about pills and powders like it’s a religion. I don’t care about the rituals. I care about the outcome. If you drink a glass to laugh with a friend, that’s your business. If you open the rusted door and can’t close it, that’s the end of your story.
+So I told the traveler: don’t confuse doors. The white room will comfort you, and comfort can be a soft cage. The rusted door will cut your hands and wake you up, and that pain can be a teacher if you let it be.
 
-I buy cheap vodka because it mixes well. That’s the truth. It isn’t holy. It isn’t evil. It’s just a tool I use when I want to blur the edge of a night. A tool with a price. You can pay the price if you know what you’re buying.
+The city argued about which door was holy. They measured paint and polish, not price. But every door charges a price. The white room costs you the truth. The rusted door costs you your pride.
 
-But there are doors that charge more than you can afford. They don’t ask your name. They just take.
+I chose the rusted door because the room made me sleepy. I chose it because I wanted to know what I believed, not just what I repeated. I chose it because I didn’t want to worship my reflection.
 
-If you choose a door, own it. Don’t preach about it. Don’t pretend your door is the only door. And if you see someone walking toward the rusted one, don’t clap. Grab their arm. It’s not a game. It’s a cliff.
+[clear throat] I don’t think a door is sacred because it’s clean. I don’t think a door is cursed because it’s ugly. Doors are honest. They do what they do. If you want comfort, choose comfort. If you want truth, choose truth. But don’t pretend one is the other.
 
-[clear throat] The room can show you your mind. The rust can erase it. That’s the difference.
+And if you see someone walking toward the rusted one with no shoes, give them your coat. The point isn’t to suffer. The point is to be awake. Choose with eyes open, and own the cost.
 
 ---
 
 **The Wanderer’s Wisdom:**
-- Not every door is the same; some open rooms, some open cages.
-- Psychedelic visions can be personal; addiction is a theft.
-- The outcome matters more than the ritual.
-- Use tools honestly and pay the price you choose.
-- Don’t cheer the rusted door.
+- Not every door is the same; some soothe, some sharpen.
+- Comfort is a price and truth is a price.
+- The outcome matters more than the paint.
+- Choose with eyes open and own the cost.
+- Don’t cheer the crowd. Help the walker.
 
 ---
 

@@ -1,9 +1,7 @@
 <script>
 	import '../app.css';
 	import Sidebar from '$lib/components/Sidebar.svelte';
-	import StickyPlayer from '$lib/components/StickyPlayer.svelte';
 	import { fetchChapters, fetchChapter } from '$lib/api.js';
-	import { player } from '$lib/audioState.svelte.js';
 
 	let { children } = $props();
 
@@ -19,15 +17,23 @@
 
 	$effect(() => {
 		(async () => {
-			const ids = await fetchChapters();
-			const chapterIds = ids.filter(id => id !== 'commandments');
-			const cmdId = ids.includes('commandments') ? 'commandments' : null;
-			const [results, cmdData] = await Promise.all([
-				Promise.all(chapterIds.map(id => fetchChapter(id))),
-				cmdId ? fetchChapter(cmdId) : Promise.resolve(null),
-			]);
-			allChapters = chapterIds.map((id, i) => ({ id, data: results[i] }));
-			commandmentsEntry = cmdId && cmdData ? { id: cmdId, data: cmdData } : null;
+			try {
+				console.log('Loading chapters...');
+				const ids = await fetchChapters();
+				console.log('Chapter IDs:', ids);
+				const chapterIds = ids.filter(id => id !== 'commandments');
+				const cmdId = ids.includes('commandments') ? 'commandments' : null;
+				const [results, cmdData] = await Promise.all([
+					Promise.all(chapterIds.map(id => fetchChapter(id))),
+					cmdId ? fetchChapter(cmdId) : Promise.resolve(null),
+				]);
+				console.log('Chapter results:', results);
+				allChapters = chapterIds.map((id, i) => ({ id, data: results[i] }));
+				commandmentsEntry = cmdId && cmdData ? { id: cmdId, data: cmdData } : null;
+				console.log('All chapters loaded:', allChapters);
+			} catch (error) {
+				console.error('Error loading chapters:', error);
+			}
 		})();
 	});
 
@@ -36,8 +42,6 @@
 		sidebarOpen = false;
 		if (activeIndex !== null) {
 			activeIndex = null;
-			player.visible = false;
-			if (player.audio) { player.audio.pause(); player.isPlaying = false; }
 		}
 		onCarouselJump?.(index);
 	}
@@ -125,8 +129,6 @@
 		</div>
 	</main>
 </div>
-
-<StickyPlayer />
 
 <style>
 	.app-shell {

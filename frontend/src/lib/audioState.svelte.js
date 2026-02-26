@@ -17,13 +17,39 @@ export const player = $state({
 	fullAudioFilename: null,
 });
 
+function ensureAudio() {
+	if (!player.audio) {
+		const a = new Audio();
+		a.addEventListener('timeupdate', () => {
+			player.currentTime = Number.isFinite(a.currentTime) ? a.currentTime : 0;
+		});
+		a.addEventListener('durationchange', () => {
+			player.duration = Number.isFinite(a.duration) ? a.duration : 0;
+		});
+		a.addEventListener('loadedmetadata', () => {
+			player.duration = Number.isFinite(a.duration) ? a.duration : 0;
+			player.currentTime = Number.isFinite(a.currentTime) ? a.currentTime : 0;
+		});
+		a.addEventListener('play', () => {
+			player.isPlaying = true;
+		});
+		a.addEventListener('pause', () => {
+			player.isPlaying = false;
+		});
+		player.audio = a;
+	}
+	return player.audio;
+}
+
 /** @param {number} index @param {(string|null)[]} audioUrls */
 export function loadChunk(index, audioUrls) {
 	if (!audioUrls?.[index]) return;
 	player.chunkIndex = index;
-	if (!player.audio) player.audio = new Audio();
-	player.audio.src = audioUrls[index];
-	player.audio.load();
+	const a = ensureAudio();
+	a.src = audioUrls[index];
+	a.load();
+	player.currentTime = 0;
+	player.duration = 0;
 	player.status = `Ready: Chunk ${index + 1}`;
 }
 
@@ -31,14 +57,15 @@ export function loadChunk(index, audioUrls) {
 export function playChunk(index, audioUrls) {
 	if (!audioUrls?.[index]) return;
 	player.chunkIndex = index;
-	if (!player.audio) player.audio = new Audio();
+	const a = ensureAudio();
 
-	player.audio.src = audioUrls[index];
+	a.src = audioUrls[index];
 	player.status = `Reading Chunk ${index + 1}...`;
-	player.isPlaying = true;
-	player.audio.play();
+	player.currentTime = 0;
+	player.duration = 0;
+	void a.play();
 
-	player.audio.onended = () => {
+	a.onended = () => {
 		if (player.chunkIndex + 1 < audioUrls.length) {
 			playChunk(player.chunkIndex + 1, audioUrls);
 		} else {
@@ -46,6 +73,30 @@ export function playChunk(index, audioUrls) {
 			player.isPlaying = false;
 		}
 	};
+}
+
+export function pause() {
+	if (!player.audio) return;
+	player.audio.pause();
+	player.status = `Paused: Chunk ${player.chunkIndex + 1}`;
+}
+
+export function stop() {
+	if (!player.audio) return;
+	player.audio.pause();
+	player.audio.currentTime = 0;
+	player.currentTime = 0;
+	player.status = 'Ready';
+}
+
+/** @param {number} seconds */
+export function seekTo(seconds) {
+	if (!player.audio) return;
+	const d = Number.isFinite(player.audio.duration) ? player.audio.duration : 0;
+	if (!d || d <= 0) return;
+	const t = Math.max(0, Math.min(d, seconds));
+	player.audio.currentTime = t;
+	player.currentTime = t;
 }
 
 /** @param {string} id @param {import('./types.js').Chapter} data */

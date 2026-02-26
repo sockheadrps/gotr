@@ -206,4 +206,20 @@
     margin-top: 0.6rem;
     background: linear-gradient(to right, rgba(255, 255, 255, 0.05), transparent);
   }
+
+  .sidebar-header::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(
+      to bottom,
+      var(--bg-sidebar),
+      transparent
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
 </style>

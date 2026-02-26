@@ -3,7 +3,7 @@
   import Carousel from '$lib/components/Carousel.svelte';
   import ChapterDetail from '$lib/components/ChapterDetail.svelte';
   import { fetchChapter } from '$lib/api.js';
-  import { openChapter, playChunk, player } from '$lib/audioState.svelte.js';
+  import { openChapter, playChunk, pause, stop, player } from '$lib/audioState.svelte.js';
 
   const layout = getContext('layout');
 
@@ -19,6 +19,7 @@
   layout.registerCallbacks(
     // onCarouselJump: sidebar card clicked
     async (index) => {
+      stop();
       layout.carouselIndex = index;
       if (showCommandments) {
         await closeCommandments();
@@ -27,6 +28,7 @@
     },
     // onBackToCarousel: nav title clicked
     async () => {
+      stop();
       await closeCommandments();
       layout.activeIndex = null;
       currentChapter = null;
@@ -64,6 +66,7 @@
 
   /** @param {number} index */
   async function handleReadChapter(index) {
+    stop();
     const { id, data } = layout.allChapters[index];
     const full = await fetchChapter(id);
     currentChapter = { ...data, ...full };
@@ -109,6 +112,55 @@
   }
 
   const commandmentItems = $derived(buildCommandmentItems(currentChapter));
+
+  // Commandments audio progress (chunk-based)
+  const cmdIsPlaying = $derived(
+    player.chapterId === 'commandments' && player.isPlaying
+  );
+  const cmdTotalChunks = $derived(player.audioUrls.length || 1);
+  const cmdChunkProgress = $derived.by(() => {
+    const d = player.duration;
+    if (!d || d <= 0) return 0;
+    return Math.min(1, player.currentTime / d);
+  });
+  const cmdOverallProgress = $derived(
+    (player.chunkIndex + cmdChunkProgress) / cmdTotalChunks
+  );
+  const cmdProgressPct = $derived(Math.round(cmdOverallProgress * 100));
+
+  function toggleCmdPlay() {
+    if (cmdIsPlaying) {
+      pause();
+    } else {
+      playChunk(player.chunkIndex ?? 0, player.audioUrls);
+    }
+  }
+
+  /** @param {MouseEvent} e */
+  function scrubCmd(e) {
+    const total = cmdTotalChunks;
+    if (!total || total <= 0) return;
+    const el = /** @type {HTMLElement} */ (e.currentTarget);
+    const rect = el.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const ratio = Math.max(0, Math.min(1, x));
+    const scaled = ratio * total;
+    const index = Math.max(0, Math.min(total - 1, Math.floor(scaled)));
+    const frac = Math.max(0, Math.min(0.999, scaled - index));
+    const wasPlaying = !!player.isPlaying;
+    playChunk(index, player.audioUrls);
+    const a = player.audio;
+    if (!a) return;
+    const applySeek = () => {
+      const d = Number.isFinite(a.duration) ? a.duration : 0;
+      if (!d || d <= 0) return;
+      a.currentTime = frac * d;
+      player.currentTime = a.currentTime;
+      if (!wasPlaying) pause();
+    };
+    if (a.readyState >= 1) applySeek();
+    else a.addEventListener('loadedmetadata', applySeek, { once: true });
+  }
 
   // Which commandment is focused (clicked or playing)
   let focusedCmd = $state(0);
@@ -216,8 +268,36 @@
               {commandmentItems[focusedCmd].title}
             </h2>
 
-            <!-- Rule: draws outward from left edge -->
-            <div class="cmd-rule-draw"></div>
+            <!-- Audio toolbar -->
+            <div class="cmd-audio-toolbar">
+              <button
+                class="cmd-play-btn"
+                onclick={toggleCmdPlay}
+                aria-label={cmdIsPlaying ? 'Pause' : 'Play'}
+                title={cmdIsPlaying ? 'Pause' : 'Play'}
+              >
+                {#if cmdIsPlaying}
+                  <svg viewBox="0 0 24 24" fill="currentColor" class="cmd-play-icon"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+                {:else}
+                  <svg viewBox="0 0 24 24" fill="currentColor" class="cmd-play-icon"><path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11.04-6.86a1 1 0 0 0 0-1.72L9.5 4.28a1 1 0 0 0-1.5.86z"/></svg>
+                {/if}
+              </button>
+              <div
+                class="cmd-scrubber"
+                role="slider"
+                tabindex="0"
+                aria-label="Audio progress"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow={cmdProgressPct}
+                onclick={scrubCmd}
+              >
+                <div class="cmd-scrub-track"></div>
+                <div class="cmd-scrub-fill" style="transform: translateY(-50%) scaleX({cmdOverallProgress});"></div>
+                <div class="cmd-scrub-head" style="left: calc({cmdOverallProgress * 100}% - 6px);"></div>
+              </div>
+              <div class="cmd-scrub-meta" aria-live="polite">{cmdProgressPct}%</div>
+            </div>
 
             <!-- Body: surfaces with blur — arrives last among visible content -->
             <div class="cmd-body-text">
@@ -389,16 +469,112 @@
     animation-delay: 0.18s;
   }
 
-  /* ── Rule: scales in from left ── */
-  .cmd-rule-draw {
-    height: 1px;
-    width: 5rem;
-    background: linear-gradient(to right, var(--accent-purple), transparent);
-    margin-bottom: 4rem;
-    transform: scaleX(0);
+  /* ── Audio toolbar: teal scrubber ── */
+  .cmd-audio-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 3.5rem;
+    opacity: 0;
+    animation: cmdFadeOnly 0.7s ease forwards;
+    animation-delay: 0.5s;
+  }
+
+  .cmd-play-btn {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 999px;
+    border: 1.5px solid rgba(0, 210, 211, 0.3);
+    background:
+      radial-gradient(circle at 35% 35%, rgba(0, 210, 211, 0.12), transparent 70%),
+      rgba(0, 210, 211, 0.04);
+    color: var(--accent-teal);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    flex: 0 0 auto;
+    transition: background 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.15s;
+    box-shadow:
+      0 0 12px rgba(0, 210, 211, 0.08),
+      0 0 0 0.5px rgba(0, 210, 211, 0.1) inset;
+  }
+
+  .cmd-play-btn:hover {
+    background:
+      radial-gradient(circle at 35% 35%, rgba(0, 210, 211, 0.2), transparent 70%),
+      rgba(0, 210, 211, 0.08);
+    border-color: rgba(0, 210, 211, 0.6);
+    box-shadow:
+      0 0 20px rgba(0, 210, 211, 0.2),
+      0 0 0 1px rgba(0, 210, 211, 0.15) inset;
+    transform: scale(1.06);
+  }
+
+  .cmd-play-btn:active {
+    transform: scale(0.96);
+  }
+
+  .cmd-play-btn:focus-visible {
+    outline: 2px solid rgba(0, 210, 211, 0.55);
+    outline-offset: 2px;
+  }
+
+  .cmd-play-icon {
+    width: 48%;
+    height: 48%;
+  }
+
+  .cmd-scrubber {
+    position: relative;
+    flex: 1;
+    height: 18px;
+    cursor: pointer;
+  }
+
+  .cmd-scrub-track {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    transform: translateY(-50%);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .cmd-scrub-fill {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    border-radius: 999px;
     transform-origin: left;
-    animation: cmdDrawRule 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 0.55s;
+    background: var(--accent-teal);
+    box-shadow: 0 0 10px rgba(0, 210, 211, 0.4);
+    transition: transform 0.08s linear;
+  }
+
+  .cmd-scrub-head {
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    transform: translateY(-50%);
+    border-radius: 999px;
+    background: #c5f9ff;
+    box-shadow:
+      0 0 0 2px rgba(0, 210, 211, 0.25),
+      0 0 8px rgba(0, 210, 211, 0.4);
+  }
+
+  .cmd-scrub-meta {
+    min-width: 3ch;
+    text-align: right;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    color: rgba(215, 238, 255, 0.6);
   }
 
   /* ── Body: surfaces with blur, arrives after rule ── */

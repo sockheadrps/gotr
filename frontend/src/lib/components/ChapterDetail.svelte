@@ -1,13 +1,22 @@
 <script>
 	import ManuscriptView from './ManuscriptView.svelte';
-	import IdeologyModal from './IdeologyModal.svelte';
+	import { player } from '$lib/audioState.svelte.js';
 
 	/** @type {{ chapter: import('../types.js').Chapter }} */
 	let { chapter } = $props();
 
-	let ideologyOpen = $state(false);
+	let manuscriptUnlocked = $state(false);
+	let pageEl = $state(/** @type {HTMLElement|null} */ (null));
+	let scrollY = $state(0);
+	let bgHidden = $state(false);
 
 	const s = $derived(chapter.summary);
+	const chapterId = $derived(player.chapterId);
+	const bgImage = $derived.by(() => {
+		const raw = /** @type {any} */ (chapter);
+		return raw?.summary?.image || raw?.image || (chapterId ? `/static/chapters/${chapterId}/img.png` : null);
+	});
+	const bgTransform = $derived(`transform: translate3d(0, ${Math.round(scrollY * -0.08)}px, 0) scale(1.04);`);
 
 	// Iteration chapters return story_chunks + lesson_chunks; legacy chapters return chunks.
 	const manuscriptChunks = $derived(
@@ -24,66 +33,97 @@
 	const lessonOffset = $derived(
 		chapter.story_chunks ? (chapter.story_chunks?.length ?? 0) : null
 	);
-
 </script>
 
-<div class="px-15 py-15 pb-36 h-full overflow-y-auto">
-	<header class="chapter-header mb-10 pb-6" style="border-bottom: none;">
-		<div class="mb-3 flex gap-2.5 flex-wrap">
-			<span class="inline-block px-3 py-1 rounded-full text-[0.65rem] font-extrabold uppercase tracking-[1.2px]"
-				style="background: rgba(0,210,211,0.12); border: 1px solid rgba(0,210,211,0.4); color: var(--accent-teal);">
-				{s.original_topic}
-			</span>
-			<button
-				type="button"
-				class="ideology-chip inline-block px-3 py-1 rounded-full text-[0.65rem] font-extrabold uppercase tracking-[1px] cursor-pointer transition-all duration-200 hover:-translate-y-px"
-				style="background: rgba(162,155,254,0.1); border: 1px solid rgba(162,155,254,0.3); color: var(--accent-purple);"
-				onmouseenter={(e) => { e.currentTarget.style.background = 'var(--accent-purple)'; e.currentTarget.style.color = 'var(--bg-main)'; }}
-				onmouseleave={(e) => { e.currentTarget.style.background = 'rgba(162,155,254,0.1)'; e.currentTarget.style.color = 'var(--accent-purple)'; }}
-				onclick={() => (ideologyOpen = true)}
-			>Ryan's Ideology 🔍</button>
+<div
+	class="chapter-page px-6 md:px-10 py-10 md:py-12 h-full overflow-y-auto "
+	bind:this={pageEl}
+	onscroll={() => {
+		scrollY = pageEl?.scrollTop ?? 0;
+	}}
+>
+	{#if bgImage && !bgHidden}
+		<div class="chapter-bg" aria-hidden="true">
+			<img
+				src={bgImage}
+				alt=""
+				class="chapter-bg-img"
+				style={bgTransform}
+				onerror={() => {
+					bgHidden = true;
+				}}
+			/>
+			<div class="chapter-bg-vignette"></div>
 		</div>
+	{/if}
 
-		<h1 class="chapter-title text-[3.5rem] font-extrabold m-0 mb-2.5 leading-tight text-white">{s.gospel_title}</h1>
-		<p class="chapter-subtitle font-serif text-[1.2rem] italic m-0 leading-snug" style="color: var(--text-secondary);">{s.subtitle}</p>
-
+	<header class="chapter-header max-w-5xl mx-auto mb-7 md:mb-8 pb-2">
+		<h1 class="chapter-title text-[2.6rem] md:text-[3.35rem] font-extrabold m-0 mb-3 leading-tight text-white">{s.gospel_title}</h1>
+		<p class="chapter-subtitle font-serif text-[1.05rem] md:text-[1.2rem] italic m-0 leading-snug" style="color: var(--text-secondary);">{s.subtitle}</p>
 	</header>
 
-	<ManuscriptView chunks={manuscriptChunks} audioUrls={manuscriptAudioUrls} {lessonOffset} />
-
-	{#if ideologyOpen}
-		<IdeologyModal text={s.ideology_summary} onClose={() => (ideologyOpen = false)} />
-	{/if}
+	<ManuscriptView
+		chunks={manuscriptChunks}
+		audioUrls={manuscriptAudioUrls}
+		unlockFromParent={manuscriptUnlocked}
+		{lessonOffset}
+	/>
 </div>
 
 <style>
 	.chapter-header {
 		animation: headerReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+		position: relative;
+	}
+
+	.chapter-page {
+		background: none;
+		position: relative;
+		isolation: isolate;
+	}
+
+	.chapter-bg {
+		position: absolute;
+		inset: 0;
+		overflow: hidden;
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.chapter-bg-img {
+		position: absolute;
+		inset: -6% -4%;
+		width: 108%;
+		height: 112%;
+		object-fit: cover;
+		object-position: center 4%;
+		opacity: 0.20;
+		filter: saturate(0.99) contrast(0.99) blur(0.9px);
+		will-change: transform;
+	}
+
+	.chapter-bg-vignette {
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(120% 90% at 50% -10%, rgba(4, 8, 24, 0.342), rgba(4, 8, 24, 0.92) 70%),
+			linear-gradient(to bottom, rgba(4, 8, 24, 0.4), rgba(4, 8, 24, 0.95));
+	}
+
+	.chapter-header,
+	:global(.manuscript-shell) {
+		position: relative;
+		z-index: 1;
 	}
 
 	.chapter-title {
 		letter-spacing: -0.02em;
+		max-width: 22ch;
 	}
 
-	.chapter-header {
-		position: relative;
-	}
-
-	.chapter-header::after {
-		content: '';
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		height: 1px;
-		background: linear-gradient(to right, var(--accent-teal), transparent);
-		transform-origin: left;
-		animation: cmdDrawRule 1s cubic-bezier(0.16, 1, 0.3, 1) both;
-	}
-
-	@keyframes cmdDrawRule {
-		from { transform: scaleX(0); }
-		to { transform: scaleX(1); }
+	.chapter-subtitle {
+		line-height: 1.6;
+		max-width: 62ch;
 	}
 
 	@keyframes headerReveal {
@@ -104,14 +144,5 @@
 		.chapter-subtitle {
 			font-size: 1rem;
 		}
-	}
-
-	.chapter-subtitle {
-		line-height: 1.6;
-	}
-
-	.ideology-chip:focus-visible {
-		outline: 2px solid rgba(162, 155, 254, 0.6);
-		outline-offset: 2px;
 	}
 </style>
