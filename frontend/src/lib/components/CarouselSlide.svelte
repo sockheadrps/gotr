@@ -792,9 +792,9 @@
       left: 0;
       right: 0;
       width: 100%;
-      max-height: min(62%, 28rem);
+      max-height: min(56%, 24rem);
       overflow-y: auto;
-      padding: 2.8rem 1.25rem 1.1rem;
+      padding: 4.1rem 1.25rem 1.1rem;
       background: linear-gradient(
         to bottom,
         rgba(12, 18, 28, 0.75) 0%,
@@ -809,19 +809,19 @@
     .mobile-audio-overlay {
       display: flex;
       align-items: center;
-      gap: 0.55rem;
+      gap: 0.7rem;
       position: absolute;
-      left: 0;
-      right: 0.5rem;
-      top: 0;
-      transform: translateY(-50%);
+      left: 0.8rem;
+      right: 0.9rem;
+      top: 0.85rem;
+      transform: none;
       z-index: 14;
       pointer-events: none;
     }
 
     .mobile-rule-play {
-      width: 3.4rem;
-      height: 3.4rem;
+      width: 3rem;
+      height: 3rem;
       border-radius: 999px;
       border: 1.5px solid rgba(140, 255, 255, 0.5);
       background:
@@ -832,7 +832,7 @@
       place-items: center;
       cursor: pointer;
       backdrop-filter: blur(10px);
-      margin-left: -0.6rem;
+      margin-left: 0;
       flex: 0 0 auto;
       pointer-events: auto;
       box-shadow:
@@ -847,8 +847,8 @@
     }
 
     .mobile-rule-play .play-icon {
-      width: 44%;
-      height: 44%;
+      width: 46%;
+      height: 46%;
       filter: drop-shadow(0 0 6px rgba(0, 210, 211, 0.4));
     }
 
@@ -914,18 +914,17 @@
       position: absolute;
       left: 0;
       right: 0;
-      top: -28px;
-      height: 64px;
+      top: 0;
+      height: 72px;
       transform: none;
       background: linear-gradient(
         to bottom,
-        transparent 0%,
-        rgba(12, 18, 28, 0.3) 30%,
-        rgba(12, 18, 28, 0.55) 60%,
-        rgba(12, 18, 28, 0.75) 100%
+        rgba(12, 18, 28, 0.08) 0%,
+        rgba(12, 18, 28, 0.38) 42%,
+        rgba(12, 18, 28, 0.62) 100%
       );
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       pointer-events: none;
       z-index: 13;
     }
