@@ -6,7 +6,7 @@
 
   const apiBase = import.meta.env.DEV
     ? ''
-    : import.meta.env.VITE_API_URL || 'http://localhost:8100';
+    : import.meta.env.VITE_API_URL || '';
 
   /** @param {string|null|undefined} value */
   function toApiUrl(value) {
@@ -41,17 +41,21 @@
   let summaryAudioSrcLoaded = $state(/** @type {string|null} */ (null));
   let resolvedSummarySrc = $state(/** @type {string|null} */ (null));
   let summaryAudioUnavailable = $state(false);
-  let prefetchedChapterId = $state('');
   let summaryPlaying = $state(false);
   let summaryCurrent = $state(0);
   let summaryDuration = $state(0);
+  const activeIteration = $derived.by(() => {
+    const raw = /** @type {any} */ (chapterData)?.active_iteration;
+    const n = Number(raw);
+    return Number.isFinite(n) && n >= 0 ? Math.floor(n) : 0;
+  });
   const summaryProgress = $derived.by(() => {
     if (!summaryDuration || summaryDuration <= 0) return 0;
     return Math.max(0, Math.min(1, summaryCurrent / summaryDuration));
   });
   const summaryProgressPct = $derived(Math.round(summaryProgress * 100));
   const hasSummaryAudio = $derived(
-    !summaryAudioUnavailable && (!!summaryAudioSrc || !!chapter?.id)
+    !summaryAudioUnavailable && (!!summaryAudioSrc || !!resolvedSummarySrc)
   );
 
   function stopSummaryAudio() {
@@ -70,7 +74,6 @@
       summaryPlaying = false;
       summaryCurrent = 0;
       summaryDuration = 0;
-      prefetchedChapterId = '';
       lastId = chapter.id;
       imgLoaded = false;
     }
@@ -84,12 +87,6 @@
 
   onDestroy(() => {
     stopSummaryAudio();
-  });
-
-  $effect(() => {
-    if (!chapter?.id || prefetchedChapterId === chapter.id) return;
-    prefetchedChapterId = chapter.id;
-    void resolveSummarySrc();
   });
 
   /** @param {string} src @returns {Promise<boolean>} */
@@ -128,10 +125,10 @@
     if (resolvedSummarySrc) return resolvedSummarySrc;
     const candidates = [
       summaryAudioSrc,
+      toApiUrl(`/files/${chapter.id}/iteration-${activeIteration}/audio/summary.wav`),
+      toApiUrl(`/files/${chapter.id}/iteration-${activeIteration}/audio/summary.mp3`),
       toApiUrl(`/files/${chapter.id}_summary.wav`),
       toApiUrl(`/files/${chapter.id}_summary.mp3`),
-      toApiUrl(`/files/${chapter.id}/iteration-0/audio/summary.wav`),
-      toApiUrl(`/files/${chapter.id}/iteration-0/audio/summary.mp3`),
     ].filter(Boolean);
     for (const c of candidates) {
       const ok = await probeAudioSource(c);
