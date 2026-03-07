@@ -1,73 +1,48 @@
-# Voice Worker (ChatterboxTTS)
+# Gospel of the Real (GOTR)
 
-Text-to-speech worker using ChatterboxTTS. Connects to BeemoTooling Hub and generates audio on demand.
+This repo serves the **static chapter payloads** for the Gospel of the Real site/app. The data in `static/chapters/*` is generated from the gospel pipeline and then copied here for the frontend to consume.
 
-**Requires GPU** — runs on a machine with CUDA-capable GPU.
+## How the data was gathered
+1. **Discord philosophy archive → topic files**
+   - Discord conversations were distilled into topical files in `/home/nonsrs/code_projects/philosophy-profile/`.
+   - Each file captures the author’s positions, quotes, and evidence for one topic.
 
-## Setup
+2. **Gospel chapters written from those topics**
+   - **`gospel-writer` skill** uses the topic files to write each chapter’s `ORIGINAL.md` in `/home/nonsrs/code_projects/gospel/chapter-XX-*`.
+   - Original prompt used:
+     > "Can you make a new folder called gospel, go there, and the plan is going to be that its a book, much like the bible, and using each one of those 10 topics, wrangle them into 10 chapters for the book, and write a prophetic, inspiring allegory-esk short story using the info from each topic, and try to use the same tone and vernacular I would use in the writing."
 
-```bash
-cd workers/voice
-python -m venv .venv
-source .venv/bin/activate  # Linux/Mac
-# or: .venv\Scripts\activate  # Windows
+3. **Data files generated from each chapter**
+   - **`gospel-data-generator` skill** creates:
+     - `summary.json`
+     - `source.json` (Discord evidence + quotes)
+     - `audio_chunks.json` (TTS-ready chunks)
+   - Run prompts/commands:
+     - `python3 /path/to/generate.py --chapter 7`
+     - `python3 /path/to/generate.py --next`
+     - `python3 /path/to/generate.py --all`
+   - Output lives in each chapter folder in `/home/nonsrs/code_projects/gospel/`.
 
-# Install PyTorch with CUDA first
-pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu121
+4. **Optional chapter iterations**
+   - **`gospel-iter` skill** can produce alternate versions under `iterations/iteration-N/` with their own `iteration.md`, `summary.json`, and `audio_chunks.json`.
+   - Iteration prompt used:
+     > "Edit and iterate on this allegory, keep the emotionally and intellectually charging parts and see if you can improve it. If there is a common phrase or statement or specific choice of words from the source context made by Ryan ('Author') that will preserve the voice of the Author in the story by using verbatim or closely paraphrasing, preserve that aspect when creating the story"
 
-# Then other dependencies
-pip install -r requirements.txt
+## How those skills feed GOTR
+The generated chapter assets are copied into this repo under:
+
+```
+/static/chapters/chapter-XX-*/
+  ORIGINAL.md
+  summary.json
+  source.json
+  audio_chunks.json
+  img.png
+  chapter.json   # tracks active_iteration
 ```
 
-## Configuration
+`chapter.json` currently stores the active iteration index for the frontend.
 
-Copy `.env.example` to `.env` and adjust:
+---
 
-```bash
-cp .env.example .env
-```
-
-Environment variables:
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `HUB_HOST` | Hub hostname | `localhost` |
-| `HUB_PORT` | Hub port | `8300` |
-| `HUB_SSL` | Use secure WebSocket | `false` |
-| `HUB_AUTH_TOKEN` | API key for hub auth | (none) |
-
-## Reference Audio
-
-Place a reference audio file at `audio/reference/beemo.wav` for voice cloning. This determines the voice style used for TTS.
-
-## Run
-
-```bash
-# Local development
-python worker.py
-
-# With explicit hub connection
-python worker.py --hub-host localhost --hub-port 8300
-
-# Production (remote hub over HTTPS)
-python worker.py --hub-host beemo.yourdomain.com --hub-port 443 --ssl --token YOUR_API_KEY
-
-# Custom audio server port (default 8301)
-python worker.py --audio-port 8302
-```
-
-## How It Works
-
-1. Worker connects to hub via WebSocket
-2. Receives `speak` or `generate` commands with text
-3. Generates audio using ChatterboxTTS on GPU
-4. Serves audio file via built-in HTTP server
-5. Returns URL to the generated audio
-
-## Commands
-
-| Command | Description |
-|---------|-------------|
-| `speak` | Generate TTS and queue for playback |
-| `generate` | Generate TTS and return URL only |
-| `stop` | Stop current generation |
-| `status` | Get model/GPU status |
+If you need new chapters or refreshed data, run the gospel skills to update `/home/nonsrs/code_projects/gospel/`, then copy the updated chapter folders into `gotr/static/chapters/`.
